@@ -1,6 +1,7 @@
 import BgRectangle from '@/assets/imgs/heroBackgroundRectangle.png';
 import HomeButton from "@/shared/ui/HomeButton";
 import SquaredText from "@/shared/ui/SquaredTextElem";
+import InfoContainer from "@/shared/ui/InfoContainer";
 
 export default function HeroSection(props) {
     return (
@@ -13,7 +14,7 @@ export default function HeroSection(props) {
         <div className="w-full h-1 bg-linear-to-r from-[#D0A4FA] to-[#A1E3F1] absolute bottom-[60%] z-1"></div>
 
         <SquaredText></SquaredText>
-
+        <InfoContainer></InfoContainer>
     </div>
 
     )
