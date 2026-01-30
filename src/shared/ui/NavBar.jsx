@@ -1,7 +1,7 @@
 import NavElement from "@/shared/ui/NavElement";
 import infoIcon from "@/assets/imgs/ix_about.png";
 import homeIcon from "@/assets/imgs/material-symbols_home-outline-rounded.png"
-import contactIcon from "@/assets/imgs/mdi_contact-outline.png"
+import contactIcon from "@/assets/imgs/contactImg.png"
 
 export default function NavBar() {
     return (
