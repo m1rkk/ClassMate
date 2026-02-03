@@ -3,5 +3,5 @@
     height: 100%;
     position: absolute;
     aspect-ratio: 16/9;
-    z-index: 0;
+    z-index: 1;
 }

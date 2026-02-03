@@ -1,12 +1,28 @@
-import LiquidGlass from "liquid-glass-react";
-export default function GlassCard() {
+export function LiquidGlassCard({ children }) {
     return (
-        <div className={`absolute top-1/2 flex items-center justify-center w-1/4 h-1/6`}>
-            <LiquidGlass  displacementScale={64}   blurAmount={0.1}   saturation={130}   aberrationIntensity={2}   elasticity={0.35}   cornerRadius={100}   padding="8px 16px">
-                <div className="absolute top-0.5 w-[200px] h-[200px] bg-white">
+        <div className="absolute top-1/2 left-1/2 z-1">
+            {/* glow */}
+            <div className="
+        absolute -inset-1
+        bg-linear-to-r from-white/20 via-white/10 to-white/20
+        rounded-3xl
+        blur-xl opacity-10
+        group-hover:opacity-100
+        transition
+      "/>
 
-                </div>
-            </LiquidGlass>
+            {/* glass */}
+            <div className="
+        relative
+        rounded-3xl
+        backdrop-blur-[2px]
+        bg-white/10
+        border border-white/20
+        shadow-xl
+        p-6
+      ">
+                {children}
+            </div>
         </div>
-  );
+    )
 }

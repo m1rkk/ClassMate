@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@creativoma/liquid-glass": "^1.0.3",
+    "@gracefullight/liquid-glass": "^0.1.0",
     "@radix-ui/react-slot": "^1.2.4",
     "@react-three/fiber": "^9.5.0",
     "@react-three/postprocessing": "^3.0.4",
