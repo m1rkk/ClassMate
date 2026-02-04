@@ -11,20 +11,44 @@ export default function HeroSection(props) {
          <Dither waveColor={[0.5,0.5,0.5]}
                  disableAnimation={false}
                  enableMouseInteraction
-                 mouseRadius={0.3}
-                 colorNum={4}
+                 mouseRadius={0.1}
+                 colorNum={3}
                  waveAmplitude={0.3}
-                 waveFrequency={3}
+                 waveFrequency={6}
                  waveSpeed={0.05}>
              </Dither>
-       <LiquidGlass
-                    elasticity={0}
-                    cornerRadius={20}
-                    style={{position:"absolute", top:"50%", zIndex:"2"}}>
-        <div className="relative w-20 h-50 ">
 
+            <LiquidGlass
+                displacementScale={50}
+                saturation={200}
+                aberrationIntensity={2}
+                mode={"standard"}
+                blurAmount={0.0}
+                elasticity={0}
+                cornerRadius={100}
+                style={{position:"absolute", top:"31%",left:"4.5%",zIndex:2}}>
+                <div className="relative text-[1.25rem] font-light w-32 h-2 flex items-center justify-center">Pieslegties</div>
+            </LiquidGlass>
+            <button className={`bg-black pt-4 pb-[0.9rem] pr-7 p-7 rounded-[100px] absolute top-[29%] left-[9%] text-white z-1 text-[1.15rem] font-extralight`}>Registreties</button>
+
+       <LiquidGlass
+           displacementScale={170}
+           saturation={140}
+           aberrationIntensity={2}
+           mode={"shader"}
+                    blurAmount={0.0}
+                    elasticity={0}
+                    cornerRadius={18}
+                    style={{position:"absolute", top:"40%",left:"12%", zIndex:"2"}}>
+        <div className="relative w-130 h-30 text-white text-[1.25rem] font-light flex items-center justify-center">
+            Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām. Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām..
         </div>
        </LiquidGlass>
+        <h1 className="text-white text-[7rem] font-extrabold absolute top-[45%] left-[1%] z-1 w-[26%] font-[Orbitron]">
+            NEW WAY
+            TO
+            SCHEDULE
+        </h1>
 
     </div>
 
