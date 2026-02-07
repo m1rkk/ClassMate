@@ -1,11 +1,11 @@
 import NavElement from "@/shared/ui/NavElement";
-import infoIcon from "@/assets/imgs/ix_about.png";
-import homeIcon from "@/assets/imgs/material-symbols_home-outline-rounded.png"
-import contactIcon from "@/assets/imgs/contactImg.png"
+import infoIcon from "@/assets/imgs/infoIcon.png";
+import homeIcon from "@/assets/imgs/homeIcon.png";
+import contactIcon from "@/assets/imgs/contactIcon.png";
 import GlassSurface from "@/components/ui/GlassSurface";
 export default function NavBar() {
     return (
-        <nav className="flex items-center justify-center w-1/5 h-[15%] mt-[1%] mr-[2%]">
+        <nav className="flex items-center justify-center w-1/5 h-[15%] mt-[1%] mr-[1%]">
             <GlassSurface
                 saturation={1}
                 backgroundOpacity={0}

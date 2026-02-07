@@ -13,7 +13,7 @@ export default function HeroSection(props) {
                  waveFrequency={6}
                  waveSpeed={0.05}>
              </Dither>
-    <div className={`absolute top-0 flex flex-col items-start justify-end w-full h-full gap-[1%] ml-[1%]`}>
+    <div className={`absolute top-0 flex flex-col items-start justify-end w-[97%] h-full gap-[1%] ml-[1%]`}>
         <div className={`w-full h-full flex flex-row items-start justify-end`}>
             <NavBar></NavBar>
         </div>
