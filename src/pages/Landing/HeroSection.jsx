@@ -1,8 +1,4 @@
-import BgRectangle from '@/assets/imgs/heroBackgroundRectangle.png';
-import HomeButton from "@/shared/ui/HomeButton";
-import SquaredText from "@/shared/ui/SquaredTextElem";
-import InfoContainer from "@/shared/ui/InfoContainer";
-import AboutButton from "@/shared/ui/AboutButton";
+import NavBar from "@/shared/ui/NavBar";
 import Dither from "@/components/ui/Dither";
 import GlassSurface from "@/components/ui/GlassSurface";
 export default function HeroSection(props) {
@@ -18,6 +14,9 @@ export default function HeroSection(props) {
                  waveSpeed={0.05}>
              </Dither>
     <div className={`absolute top-0 flex flex-col items-start justify-end w-full h-full gap-[1%] ml-[1%]`}>
+        <div className={`w-full h-full flex flex-row items-start justify-end`}>
+            <NavBar></NavBar>
+        </div>
         <div className={`flex flex-row items-center justify-start w-1/4 h-[5%] gap-[3%]`}>
             <GlassSurface
                 saturation={1}
