@@ -7,7 +7,7 @@ import Dither from "@/components/ui/Dither";
 import GlassSurface from "@/components/ui/GlassSurface";
 export default function HeroSection(props) {
     return (
-    <div className="w-full relative flex flex-col items-center justify-center">
+    <div className="w-full h-full">
          <Dither waveColor={[0.5,0.5,0.5]}
                  disableAnimation={false}
                  enableMouseInteraction
@@ -17,27 +17,52 @@ export default function HeroSection(props) {
                  waveFrequency={6}
                  waveSpeed={0.05}>
              </Dither>
-
-            <GlassSurface>
-                <div className="relative text-[1.25rem] font-light w-32 h-2 flex items-center justify-center">Pieslegties</div>
+    <div className={`absolute top-0 flex flex-col items-start justify-end w-full h-full gap-[1%] ml-[1%]`}>
+        <div className={`flex flex-row items-center justify-start w-1/4 h-[5%] gap-[3%]`}>
+            <GlassSurface
+                saturation={1}
+                backgroundOpacity={0}
+                borderWidth={0.1}
+                brightness={30}
+                opacity={0.5}
+                blur={3}
+                displace={0.7}
+                distortionScale={40}
+                redOffset={0}
+                greenOffset={0}
+                blueOffset={0}
+                mixBlendMode="difference"
+                width={`40%`}
+                height={`100%`}>
+                <span className="text-[clamp(0.4rem,1vw,1.3rem)] font-light flex items-center justify-center text-white">Pieslegties</span>
             </GlassSurface>
-            <button className={`bg-black pt-4 pb-[0.9rem] pr-7 p-7 rounded-[100px] absolute top-[29%] left-[9%] text-white z-10 text-[1.15rem] font-extralight`}>Registreties</button>
-
-      <GlassSurface>
-        <div className=" 2xl:w-130 xl:w-100 lg:w-70 md:w-40 sm:w-10
-        2xl:h-30 xl:h-25 lg:h-20 md:h-15 sm:h-10
-        text-white
-        xl:text-[1.25rem] lg:text-[1rem] md:text-[0.75rem] sm:text-[0.5rem]
-        font-light flex items-center justify-center">
-            Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām. Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām..
+            <button className={`bg-black pl-9 pr-9 rounded-[100px] h-full text-white text-[clamp(0.4rem,1vw,1.3rem)] font-extralight`}>Registreties</button>
         </div>
-      </GlassSurface>
-        <h1 className="text-white text-[7rem] font-extrabold absolute top-[45%] left-[1%] z-10 w-[26%] font-[Orbitron]">
-            NEW WAY
-            TO
-            SCHEDULE
-        </h1>
-
+        <div className={`w-[40%] h-[60%] flex flex-col items-start justify-center`}>
+            <GlassSurface
+                saturation={1}
+                backgroundOpacity={0}
+                borderWidth={0.1}
+                brightness={30}
+                opacity={0.5}
+                blur={3}
+                displace={0.7}
+                distortionScale={40}
+                redOffset={0}
+                greenOffset={0}
+                blueOffset={0}
+                mixBlendMode="difference"
+                width={`100%`}
+            height={`23%`}>
+                <div className="w-full h-full min-h-[23%] text-white font-light flex items-center justify-center p-4 text-[clamp(0.5rem,1vw,1.3rem)]">
+                    Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām. Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām..
+                </div>
+            </GlassSurface>
+            <h1 className="text-white text-[clamp(2vw,6vw,8rem)] font-extrabold w-full font-[Orbitron]">
+                NEW WAY<br />TO<br />SCHEDULE
+            </h1>
+        </div>
+    </div>
     </div>
 
     )
