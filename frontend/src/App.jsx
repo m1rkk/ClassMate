@@ -3,7 +3,7 @@ import '@/App.css';
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "@/pages/LoginPage/LoginPage";
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
-import ProtectedTest from "@/pages/ProtectedTest/ProtecteTest";
+import ProtectedTest from "@/pages/ProtectedTest/ProtectedTest";
 
 function App() {
   return (
