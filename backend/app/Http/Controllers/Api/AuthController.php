@@ -24,27 +24,45 @@ class AuthController extends Controller
             'Parole' => 'required|min:6',
             'role' => 'required|in:student,teacher',
         ]);
-        $user = Lietotajs::create([                           //sozdanie polzovatela
-            'Vards' => $data['Vards'],
-            'Uzvards' => $data['Uzvards'],
-            'Epasts' => $data['Epasts'],
-            'AtrasanasVieta' => $data['AtrasanasVieta'] ?? null,
-            'Parole' => Hash::make($data['Parole']),
-            //role ne ukazan potomu chto on nuzen chisto dla kajfa
-        ]);
-        if($data['role'] == 'student') { //vot dla etogo i nuzen role budet srazu sozdana relacija v nuznoj tablice
-            Studenti::create([
-                'LietotajaId' => $user->LietotajaId,
+
+        try {
+
+            $user = Lietotajs::create([                           //sozdanie polzovatela
+                'Vards' => $data['Vards'],
+                'Uzvards' => $data['Uzvards'],
+                'Epasts' => $data['Epasts'],
+                'AtrasanasVieta' => $data['AtrasanasVieta'] ?? null,
+                'Parole' => Hash::make($data['Parole']),
+                //role ne ukazan potomu chto on nuzen chisto dla kajfa
             ]);
+
+
+
+            if($data['role'] == 'student') { //vot dla etogo i nuzen role budet srazu sozdana relacija v nuznoj tablice
+                $student = Studenti::create([
+                    'LietotajaId' => $user->LietotajaId,
+                ]);
+                \Log::info('Student created:', ['id' => $student->StudentuId]);
+            }
+            else{
+               $teacher = Skolotajs::create([
+                   'LietotajaId' => $user->LietotajaId,
+               ]);
+
+            }
+
+            return response()->json([
+                'message' => 'User created successfully',
+                'user' => $user,
+                'lietotaja_id' => $user->LietotajaId
+            ], 201); //esli vse chotko
+        } catch (\Exception $e) {
+            \Log::error('Registration error:', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            return response()->json([
+                'message' => 'Registration failed',
+                'error' => $e->getMessage()
+            ], 500);
         }
-        else{
-           Skolotajs::create([
-               'LietotajaId' => $user->LietotajaId,
-           ]);
-        }
-        return response()->json([
-            'message' => 'User created successfully'
-        ], 201); //esli vse chotko
 
     }
     public function login(Request $request){
