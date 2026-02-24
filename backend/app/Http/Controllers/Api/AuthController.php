@@ -76,10 +76,11 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials',
             ], 401);
         }
-
+        $token = $user->createToken('auth-token')->plainTextToken;  // esli proshel validaciju sozdaetsa token pod polzovatela
         return response()->json([               //esli vse ok
             'message' => 'Login successful',
             'user' => $user,
+            'token' => $token,
         ]);
     }
     public function me(Request $request){    //poka chto zatichka budet rabotat kogda podkluchu Sanctum
