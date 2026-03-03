@@ -72,18 +72,18 @@ export default function RegisterPage() {
                 </div>
             </div>
 
-            <div className={`w-1/3 h-full bg-black flex flex-col justify-center items-center`}>
-                <h1 className="text-white text-[clamp(2vw,6vw,8rem)] font-extrabold w-full font-[Orbitron] transform rotate-90">
+            <div className={`w-1/3 h-full bg-black flex flex-col justify-around items-start`}>
+                <h1 className="text-white text-[clamp(1.8vw,5.5vw,7.8rem)] font-extrabold font-[Orbitron] rotate-90 ml-[-20%] mt-[10%]">
                     NEW WAY<br />TO<br />SCHEDULE
                 </h1>
-                <div className="w-full h-full min-h-[23%] text-white font-light flex items-center justify-center p-4 text-[clamp(0.5rem,1vw,1.3rem)] text-right">
+                <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-right">
                     Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām. Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām..
                 </div>
-                <div className="w-full h-full min-h-[23%] text-white font-light flex items-center justify-center p-4 text-[clamp(0.5rem,1vw,1.3rem)] text-left">
+                <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-left">
                     Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
                 </div>
             </div>
-
+8
         </div>
     );
 }

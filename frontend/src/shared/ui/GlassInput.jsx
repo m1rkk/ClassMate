@@ -17,7 +17,7 @@ export default function GlassInput( {placeholder,width = "40%", height = "5%"}) 
         mixBlendMode="difference"
         width={width}
         height={height}>
-        <input type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white`}/>
+        <input type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-sm`}/>
     </GlassSurface>
     )
 }
