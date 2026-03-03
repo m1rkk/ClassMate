@@ -1,6 +1,6 @@
 import GlassSurface from "@/components/ui/GlassSurface";
 
-export default function GlassInput( {placeholder,width = "40%", height = "5%"}) {
+export default function GlassInput( {placeholder,width = "45%", height = "7%"}) {
     return(
     <GlassSurface
         saturation={1}

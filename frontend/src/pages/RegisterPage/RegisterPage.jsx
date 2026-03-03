@@ -1,6 +1,7 @@
 import Dither from "@/components/ui/Dither";
 import GlassSurface from "@/components/ui/GlassSurface";
 import GlassInput from "@/shared/ui/GlassInput";
+import { Link } from "react-router-dom";
 export default function RegisterPage() {
     return(
         <div className={`w-full h-screen bg-black flex justify-between items-center`}>
@@ -10,14 +11,14 @@ export default function RegisterPage() {
                         disableAnimation={false}
                         enableMouseInteraction
                         mouseRadius={0.1}
-                        colorNum={3}
-                        waveAmplitude={0.3}
-                        waveFrequency={6}
-                        waveSpeed={0.05}>
+                        colorNum={4}
+                        waveAmplitude={0.4}
+                        waveFrequency={3}
+                        waveSpeed={0.03}>
                 </Dither>
 
                 <div className={`absolute top-0 w-2/3 h-full flex justify-center items-center gap-[3%] flex-col`}>
-                    <div className={`flex items-center justify-start gap-[5%] w-[40%] h-[5%]`}>
+                    <div className={`flex items-center justify-start gap-[5%] w-[45%] h-[7%]`}>
                         <GlassInput placeholder={"name:"} height={'100%'}/>
                         <GlassInput placeholder={"surname:"} height={'100%'}/>
                     </div>
@@ -39,16 +40,17 @@ export default function RegisterPage() {
                         greenOffset={0}
                         blueOffset={0}
                         mixBlendMode="difference"
-                        width={`40%`}
-                        height={`5%`}>
+                        width={`45%`}
+                        height={`7%`}>
                         <select name="City:" id="citySelector" className={`bg-transparent w-full h-full`}>
                             //TODO: add loop to iterate through array with cities
                         </select>
                     </GlassSurface>
 
-                    <div className={`flex items-center justify-start gap-1 w-[40%]`}>
+                    <div className={`flex items-center justify-start gap-4 w-[45%]`}>
                         <div><input type="radio" id={`teacherRadio`} value={`teacher`}/> <label htmlFor="teacherRadio" className={`text-white`}>I'm a teacher</label></div>
                         <div><input type="radio" id={`studentRadio`} value={`student`}/> <label htmlFor="studentRadio" className={`text-white`}>I'm a student</label></div>
+                        <div className={`text-white`}>Have an account? <Link to={`/login`} className={`text-blue-700 font-black`}>Click</Link></div>
                     </div>
 
                     <GlassSurface
@@ -64,8 +66,8 @@ export default function RegisterPage() {
                         greenOffset={0}
                         blueOffset={0}
                         mixBlendMode="difference"
-                        width={`40%`}
-                        height={`5%`}>
+                        width={`45%`}
+                        height={`7%`}>
                         <button className={`bg-transparent w-full h-full text-white`}>Register</button>
                     </GlassSurface>
 
