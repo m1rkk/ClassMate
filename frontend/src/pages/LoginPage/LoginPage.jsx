@@ -2,8 +2,29 @@ import Dither from "@/components/ui/Dither";
 import GlassInput from "@/shared/ui/GlassInput";
 import GlassSurface from "@/components/ui/GlassSurface";
 import {Link} from "react-router-dom";
+import api from "@/shared/Api";
+import {useState} from "react";
+
+
+
+
+const login = async (email, password) => {
+    try {
+        const response = await api.post("/auth/login", {     //post request na nash endpoint v funkciju peredaetsa dva argumeta iz inputa
+            Epasts: email,
+            Parole: password,
+        });
+        console.log(response.data);
+        const token = response.data.token; //sohranajem token v peremenuju
+        localStorage.setItem("token", token); // peremenuju v local storage
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 export default function LoginPage() {
+    const [email, setEmail] = useState("");   // hook dla email
+    const [password, setPassword] = useState(""); // hook dla password
     return (
         <div className={`w-full h-screen bg-black flex justify-between items-center`}>
             <div className={`w-2/3 h-full`}>
@@ -19,8 +40,8 @@ export default function LoginPage() {
                 </Dither>
 
                 <div className={`absolute top-0 w-2/3 h-full flex justify-center items-center gap-[3%] flex-col`}>
-                    <GlassInput placeholder={"email:"}/>
-                    <GlassInput placeholder={"password:"}/>
+                    <GlassInput placeholder={"email:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
+                    <GlassInput placeholder={"password:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
 
                     <div className={`flex items-center justify-start gap-4 w-[45%]`}>
                         <div className={`text-white`}>Don't have an account? <Link to={`/register`} className={`text-blue-700 font-black`}>Click</Link></div>
@@ -41,7 +62,8 @@ export default function LoginPage() {
                         mixBlendMode="difference"
                         width={`45%`}
                         height={`6%`}>
-                        <button className={`bg-transparent w-full h-full text-white text-lg`}>Login</button>
+                        <button className={`bg-transparent w-full h-full text-white text-lg`}
+                                onClick={() => login(email, password)}>Login</button>
                     </GlassSurface>
 
                 </div>
@@ -58,7 +80,6 @@ export default function LoginPage() {
                     Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
                 </div>
             </div>
-            8
         </div>
     )
 }

@@ -1,6 +1,12 @@
 import GlassSurface from "@/components/ui/GlassSurface";
+import {useState} from "react";
 
-export default function GlassInput( {placeholder,width = "45%", height = "6%"}) {
+export default function GlassInput(
+    {placeholder,
+        width = "45%",
+        height = "6%",
+    onChange,
+    value}) {
     return(
     <GlassSurface
         saturation={1}
@@ -17,7 +23,7 @@ export default function GlassInput( {placeholder,width = "45%", height = "6%"}) 
         mixBlendMode="difference"
         width={width}
         height={height}>
-        <input type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-lg`}/>
+        <input value={value} onChange={onChange} type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-lg`}/>
     </GlassSurface>
     )
 }

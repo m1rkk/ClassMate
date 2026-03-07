@@ -134,6 +134,7 @@
       <path value="$PROJECT_DIR$/backend/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/backend/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/backend/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel/sanctum" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
