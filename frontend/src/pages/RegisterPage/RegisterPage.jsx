@@ -18,8 +18,8 @@ export default function RegisterPage() {
                 </Dither>
 
                 <div className={`absolute top-0 w-2/3 h-full flex justify-center items-center gap-[3%] flex-col`}>
-                    <div className={`flex items-center justify-start gap-[5%] w-[45%] h-[7%]`}>
-                        <GlassInput placeholder={"name:"} height={'100%'}/>
+                    <div className={`flex items-center justify-between w-[45%] h-[6%]`}>
+                        <GlassInput placeholder={"name:"} height={'100%'} width={"50%"}/>
                         <GlassInput placeholder={"surname:"} height={'100%'}/>
                     </div>
 
@@ -41,7 +41,7 @@ export default function RegisterPage() {
                         blueOffset={0}
                         mixBlendMode="difference"
                         width={`45%`}
-                        height={`7%`}>
+                        height={`6%`}>
                         <select name="City:" id="citySelector" className={`bg-transparent w-full h-full`}>
                             //TODO: add loop to iterate through array with cities
                         </select>
@@ -67,7 +67,7 @@ export default function RegisterPage() {
                         blueOffset={0}
                         mixBlendMode="difference"
                         width={`45%`}
-                        height={`7%`}>
+                        height={`6%`}>
                         <button className={`bg-transparent w-full h-full text-white`}>Register</button>
                     </GlassSurface>
 

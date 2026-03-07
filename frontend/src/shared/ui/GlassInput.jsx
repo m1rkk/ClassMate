@@ -1,6 +1,6 @@
 import GlassSurface from "@/components/ui/GlassSurface";
 
-export default function GlassInput( {placeholder,width = "45%", height = "7%"}) {
+export default function GlassInput( {placeholder,width = "45%", height = "6%"}) {
     return(
     <GlassSurface
         saturation={1}
@@ -17,7 +17,7 @@ export default function GlassInput( {placeholder,width = "45%", height = "7%"}) 
         mixBlendMode="difference"
         width={width}
         height={height}>
-        <input type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-sm`}/>
+        <input type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-lg`}/>
     </GlassSurface>
     )
 }
