@@ -78,7 +78,7 @@ class AuthController extends Controller
         }
         $token = $user->createToken('auth-token')->plainTextToken;  // esli proshel validaciju sozdaetsa token pod polzovatela
         return response()->json([               //esli vse ok
-            'message' => 'Login successful',
+            'message' => 'LoginPage successful',
             'user' => $user,
             'token' => $token,
         ]);
