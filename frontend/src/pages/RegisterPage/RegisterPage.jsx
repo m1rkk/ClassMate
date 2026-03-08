@@ -2,7 +2,32 @@ import Dither from "@/components/ui/Dither";
 import GlassSurface from "@/components/ui/GlassSurface";
 import GlassInput from "@/shared/ui/GlassInput";
 import { Link } from "react-router-dom";
+import api from "@/shared/Api";
+import {useState} from "react";
+
+const register = async (name, surname, email,city = null,password, role) => {
+    try {
+        const response = await api.post("/auth/register", {     //post request na nash endpoint v funkciju peredaetsa dva argumeta iz inputa
+            Vards: name,
+            Uzvards: surname,
+            Epasts: email,
+            AtrasanasVieta: city,
+            Parole: password,
+            roles: role,
+        });
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
 export default function RegisterPage() {
+    const [name, setName] = useState("");   // hook dla imja
+    const [surname, setSurname] = useState("");   // hook dla familii
+    const [city, setCity] = useState("");   // hook dla goroda
+    const [role, setRole] = useState("");   // hook dla roli
+    const [email, setEmail] = useState("");   // hook dla email
+    const [password, setPassword] = useState(""); // hook dla password
+
     return(
         <div className={`w-full h-screen bg-black flex justify-between items-center`}>
             <div className={`w-2/3 h-full`}>
@@ -19,13 +44,13 @@ export default function RegisterPage() {
 
                 <div className={`absolute top-0 w-2/3 h-full flex justify-center items-center gap-[3%] flex-col`}>
                     <div className={`flex items-center justify-between w-[45%] h-[6%]`}>
-                        <GlassInput placeholder={"name:"} height={'100%'} width={"50%"}/>
-                        <GlassInput placeholder={"surname:"} height={'100%'}/>
+                        <GlassInput placeholder={"name:"} height={'100%'} width={"50%"} onChange={(e) => setName(e.target.value)} value={name}/>
+                        <GlassInput placeholder={"surname:"} height={'100%'} onChange={(e) => setSurname(e.target.value)} value={surname}/>
                     </div>
 
-                    <GlassInput placeholder={"email:"}/>
-                    <GlassInput placeholder={"password:"}/>
-                    <GlassInput placeholder={"repeat password:"}/>
+                    <GlassInput placeholder={"email:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
+                    <GlassInput placeholder={"password:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
+                    <GlassInput placeholder={"repeat password:"} /> TODO: add password validation
 
                     <GlassSurface
                         saturation={1}
@@ -42,7 +67,7 @@ export default function RegisterPage() {
                         mixBlendMode="difference"
                         width={`45%`}
                         height={`6%`}>
-                        <select name="City:" id="citySelector" className={`bg-transparent w-full h-full`}>
+                        <select name="City:" id="citySelector" className={`bg-transparent w-full h-full`} onChange={(e) => setCity(e.target.value)}>
                             //TODO: add loop to iterate through array with cities
                         </select>
                     </GlassSurface>
@@ -68,7 +93,7 @@ export default function RegisterPage() {
                         mixBlendMode="difference"
                         width={`45%`}
                         height={`6%`}>
-                        <button className={`bg-transparent w-full h-full text-white`}>Register</button>
+                        <button className={`bg-transparent w-full h-full text-white`} onClick={()=>register(name,surname,email,city,password,role)}>Register</button>
                     </GlassSurface>
 
                 </div>
