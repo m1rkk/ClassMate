@@ -36,7 +36,6 @@ export default function RegisterPage() {
 
                     <GlassInput placeholder={"email:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
                     <GlassInput placeholder={"password:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
-                    <GlassInput placeholder={"repeat password:"} /> TODO: add password validation
 
                     <GlassSurface
                         saturation={1}
