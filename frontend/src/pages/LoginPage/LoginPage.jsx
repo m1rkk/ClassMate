@@ -2,7 +2,6 @@ import Dither from "@/components/ui/Dither";
 import GlassInput from "@/shared/ui/GlassInput";
 import GlassSurface from "@/components/ui/GlassSurface";
 import {Link} from "react-router-dom";
-import api from "@/shared/Api";
 import {useState} from "react";
 import {login} from "@/shared/Api";
 

@@ -4,9 +4,10 @@ import GlassInput from "@/shared/ui/GlassInput";
 import { Link } from "react-router-dom";
 import {register} from "@/shared/Api";
 import {useState} from "react";
-
+import latviaCities from "@/pages/RegisterPage/Cities";
 
 export default function RegisterPage() {
+
     const [name, setName] = useState("");   // hook dla imja
     const [surname, setSurname] = useState("");   // hook dla familii
     const [city, setCity] = useState("");   // hook dla goroda
@@ -52,14 +53,18 @@ export default function RegisterPage() {
                         mixBlendMode="difference"
                         width={`45%`}
                         height={`6%`}>
-                        <select name="City:" id="citySelector" className={`bg-transparent w-full h-full`} onChange={(e) => setCity(e.target.value)}>
-                            //TODO: add loop to iterate through array with cities
+                        <select name="City:" id="citySelector" className={`bg-transparent w-full h-full text-white`} onChange={(e) => setCity(e.target.value)}>
+                            {
+                                latviaCities.map((city)=>(
+                                    <option value={city} key={city} className={`text-black`} onChange={(e)=>setCity(e.target.value)}>{city}</option>
+                                ))
+                            }
                         </select>
                     </GlassSurface>
 
                     <div className={`flex items-center justify-start gap-4 w-[45%]`}>
-                        <div><input type="radio" id={`teacherRadio`} value={`teacher`}/> <label htmlFor="teacherRadio" className={`text-white`}>I'm a teacher</label></div>
-                        <div><input type="radio" id={`studentRadio`} value={`student`}/> <label htmlFor="studentRadio" className={`text-white`}>I'm a student</label></div>
+                        <div><input type="radio" name={"role"}  value={`teacher`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="teacherRadio" className={`text-white`}>I'm a teacher</label></div>
+                        <div><input type="radio" name={"role"} value={`student`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="studentRadio" className={`text-white`}>I'm a student</label></div>
                         <div className={`text-white`}>Have an account? <Link to={`/login`} className={`text-blue-700 font-black`}>Click</Link></div>
                     </div>
 

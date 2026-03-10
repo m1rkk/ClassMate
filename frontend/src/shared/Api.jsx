@@ -17,7 +17,7 @@ const register = async (name, surname, email,city = null,password, role) => {
             Epasts: email,
             AtrasanasVieta: city,
             Parole: password,
-            roles: role,
+            role: role,
         });
         console.log(response.data);
     } catch (error) {
