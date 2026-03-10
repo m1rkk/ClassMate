@@ -4,23 +4,11 @@ import GlassSurface from "@/components/ui/GlassSurface";
 import {Link} from "react-router-dom";
 import api from "@/shared/Api";
 import {useState} from "react";
+import {login} from "@/shared/Api";
 
 
 
 
-const login = async (email, password) => {
-    try {
-        const response = await api.post("/auth/login", {     //post request na nash endpoint v funkciju peredaetsa dva argumeta iz inputa
-            Epasts: email,
-            Parole: password,
-        });
-        console.log(response.data);
-        const token = response.data.token; //sohranajem token v peremenuju
-        localStorage.setItem("token", token); // peremenuju v local storage
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");   // hook dla email

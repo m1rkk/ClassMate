@@ -2,24 +2,10 @@ import Dither from "@/components/ui/Dither";
 import GlassSurface from "@/components/ui/GlassSurface";
 import GlassInput from "@/shared/ui/GlassInput";
 import { Link } from "react-router-dom";
-import api from "@/shared/Api";
+import {register} from "@/shared/Api";
 import {useState} from "react";
 
-const register = async (name, surname, email,city = null,password, role) => {
-    try {
-        const response = await api.post("/auth/register", {     //post request na nash endpoint v funkciju peredaetsa dva argumeta iz inputa
-            Vards: name,
-            Uzvards: surname,
-            Epasts: email,
-            AtrasanasVieta: city,
-            Parole: password,
-            roles: role,
-        });
-        console.log(response.data);
-    } catch (error) {
-        console.error(error);
-    }
-}
+
 export default function RegisterPage() {
     const [name, setName] = useState("");   // hook dla imja
     const [surname, setSurname] = useState("");   // hook dla familii
