@@ -57,7 +57,7 @@ export default function RegisterPage() {
                             {
                                 latviaCities.map((city)=>(
                                     <option value={city} key={city} className={`text-black`} onChange={(e)=>setCity(e.target.value)}>{city}</option>
-                                ))
+                                )) //dobavlajiem vse goroda iz masiva
                             }
                         </select>
                     </GlassSurface>
