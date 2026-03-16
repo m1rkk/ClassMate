@@ -26,7 +26,7 @@ class Studenti extends Model
             'StudentuId', 'SkolotajaId');
     }
 
-    public function piezime(){
+    public function piezimes(){
         return $this->hasMany(Piezimes::class, 'StudentuId');
     }
     public function pieraksti(){

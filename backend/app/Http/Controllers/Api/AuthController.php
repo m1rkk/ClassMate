@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pieraksts;
+use App\Models\Piezimes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Lietotajs;
@@ -118,6 +119,16 @@ class AuthController extends Controller
         return response()->json($appointment);
     }
 
+    public function getAppointmentByStudentId(Studenti $student)
+    {
+        return $student->pieraksti()->get();
+    }
+
+    public function getAppointmentByTeacherId(Skolotajs $teacher)
+    {
+        return $teacher->pieraksti()->get();
+    }
+
     public function getAppointments()
     {
         return response()->json(Pieraksts::all());
@@ -127,4 +138,33 @@ class AuthController extends Controller
     {
         return response()->json($appointment->delete());
     }
+
+    public function createNote(request $request)
+    {
+        $data = $request->validate([
+            'Teksts' => 'required|string',
+            'Datums' => 'required|date',
+            'SkolotajaId' => 'required|exists:skolotajs,SkolotajaId',
+            'StudentuId' => 'required|exists:students,StudentuId',
+        ]);
+        try {
+            $note = Piezimes::create($data);
+            return response()->json($note, 201);
+        }
+        catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getNotesByStudentId(Studenti $student)
+    {
+        return $student->piezimes()->get();
+    }
+
+    public function deleteNote(Pieraksts $note)
+    {
+        return response()->json($note->delete());
+    }
+
+
 }

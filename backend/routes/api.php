@@ -23,10 +23,14 @@ use Illuminate\Support\Facades\Route;
         Route::get('allTeachers', [AuthController::class, 'allTeachers'])->middleware('auth:sanctum');
 
         Route::get('appointment/{appointment}', [AuthController::class, 'getAppointmentById'])->middleware('auth:sanctum');
+        Route::get('appointment/{student}/byStudent', [AuthController::class, 'getAppointmentByStudentId'])->middleware('auth:sanctum');
+        Route::get('appointment/{teacher}/byTeacher', [AuthController::class, 'getAppointmentByTeacherId'])->middleware('auth:sanctum');
         Route::get('appointment', [AuthController::class, 'getAppointments'])->middleware('auth:sanctum');
-        Route::post('makeAppointment', [AuthController::class, 'makeAppointment'])->middleware('auth:sanctum');
-        Route::delete('deleteAppointment/{appointment}', [AuthController::class, 'deleteAppointment'])->middleware('auth:sanctum');
+        Route::post('appointment/create', [AuthController::class, 'makeAppointment'])->middleware('auth:sanctum');
+        Route::delete('appointment/{appointment}/delete', [AuthController::class, 'deleteAppointment'])->middleware('auth:sanctum');
 
-
+        Route::post('note/create', [AuthController::class, 'createNote'])->middleware('auth:sanctum');
+        Route::get('note/{student}/getNote', [AuthController::class, 'getNotesByStudentId'])->middleware('auth:sanctum');
+        Route::delete('note/{note}/deleteNote', [AuthController::class, 'deleteNote'])->middleware('auth:sanctum');
     });
 ?>
