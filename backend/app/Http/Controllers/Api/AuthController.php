@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pieraksts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Lietotajs;
@@ -85,5 +86,45 @@ class AuthController extends Controller
     }
     public function me(Request $request){    //poka chto zatichka budet rabotat kogda podkluchu Sanctum
         return response()->json($request->user());
+    }
+
+    public function allTeachers()
+    {
+        return Skolotajs::all();
+    }
+
+    public function makeAppointment(Request $request)
+    {
+        $data = $request->validate([
+            'Maksa' => 'required|string|max:255',
+            'Datums' => 'required|date',
+            'Laiks' => 'required|date_format:H:i',
+            'Tema' => 'nullable|string|max:255',
+            'SkolotajaId' => 'required|exists:skolotajs,SkolotajaId',
+            'StudentuId' => 'required|exists:students,StudentuId',
+        ]);
+        try {
+            $appointment = Pieraksts::create($data);
+            return response()->json($appointment, 201);
+        }
+        catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+    }
+
+    public function getAppointmentById(Pieraksts $appointment)
+    {
+        return response()->json($appointment);
+    }
+
+    public function getAppointments()
+    {
+        return response()->json(Pieraksts::all());
+    }
+
+    public function deleteAppointment(Pieraksts $appointment)
+    {
+        return response()->json($appointment->delete());
     }
 }
