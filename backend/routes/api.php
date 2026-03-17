@@ -33,5 +33,10 @@ use App\Http\Controllers\Api\DataController;
         Route::post('note/create', [DataController::class, 'createNote'])->middleware('auth:sanctum');
         Route::get('note/{student}/getNote', [DataController::class, 'getNotesByStudentId'])->middleware('auth:sanctum');
         Route::delete('note/{note}/deleteNote', [DataController::class, 'deleteNote'])->middleware('auth:sanctum');
+
+        Route::get('reviews/{teacher}/byTeacher', [DataController::class, 'getReviewsByTeacher'])->middleware('auth:sanctum');
+        Route::get('reviews/{student}/byStudent', [DataController::class, 'getReviewsByStudentId'])->middleware('auth:sanctum');
+        Route::post('reviews/create', [DataController::class, 'createReview'])->middleware('auth:sanctum');
+        Route::delete('reviews/{review}/delete', [DataController::class, 'deleteReview'])->middleware('auth:sanctum');
     });
 
