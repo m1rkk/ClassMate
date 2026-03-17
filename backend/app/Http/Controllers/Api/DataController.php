@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Models\Atsauksme;
 use App\Models\Pieraksts;
 use App\Models\Piezimes;
 use App\Models\Skolotajs;
@@ -85,5 +86,37 @@ class DataController extends Controller
     public function deleteNote(Pieraksts $note)
     {
         return response()->json($note->delete());
+    }
+
+    public function getReviewsByTeacher(Skolotajs $teacher)
+    {
+        return $teacher->atsauksmes()->get();
+    }
+
+    public function getReviewsByStudentId(Studenti $student)
+    {
+        return $student->atsauksmes()->get();
+    }
+
+    public function createReview(Request $request)
+    {
+        $data = $request->validate([
+            'Teksts' => 'required|string',
+            'ZvaigznuSkaits' => 'required|integer|min:1|max:5',
+            'Datums' => 'required|date',
+            'SkolotajaId' => 'required|exists:skolotajs,SkolotajaId',
+            'StudentuId' => 'required|exists:students,StudentuId',
+        ]);
+        try {
+            $atsauksme = Atsauksme::create($data);
+            return response()->json($atsauksme, 201);
+        }catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function deleteReview(Atsauksme $review)
+    {
+        return response()->json($review->delete());
     }
 }
