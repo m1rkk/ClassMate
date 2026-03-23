@@ -11,13 +11,8 @@ use Illuminate\Support\Facades\Route;
     });
    /* TODO: 1) Student - teacher relationship
                 * Vse uchitelja (poze filtri)
-                * Post zapis
-                * Get zapis
-                * Delete zapis
                 * Statistika uchitelja
-                * Post piezime ucheniku
-                * Get piezime ucheniku
-                * Delete piezime ucheniku
+                * Komentari
    */
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('allTeachers', [AuthController::class, 'allTeachers'])->middleware('auth:sanctum');
