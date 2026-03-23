@@ -11,12 +11,11 @@ use App\Http\Controllers\Api\DataController;
         Route::get('me', [AuthController::class, 'me'])->middleware('auth:sanctum'); //me route kotorij svazivaetsa s me funkcijei v AuthController poka chto chisto zatichka
     });
    /* TODO: 1) Student - teacher relationship
-                * Vse uchitelja (poze filtri)
                 * Statistika uchitelja
-                * Komentari
    */
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('allTeachers', [DataController::class, 'allTeachers'])->middleware('auth:sanctum');
+        Route::get('getPerson/{person}', [DataController::class, 'getPerson'])->middleware('auth:sanctum');
 
         Route::get('appointment/{appointment}', [DataController::class, 'getAppointmentById'])->middleware('auth:sanctum');
         Route::get('appointment/{student}/byStudent', [DataController::class, 'getAppointmentByStudentId'])->middleware('auth:sanctum');
