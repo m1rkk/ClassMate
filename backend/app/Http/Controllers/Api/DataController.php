@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Atsauksme;
+use App\Models\Lietotajs;
 use App\Models\Pieraksts;
 use App\Models\Piezimes;
 use App\Models\Skolotajs;
@@ -118,5 +119,10 @@ class DataController extends Controller
     public function deleteReview(Atsauksme $review)
     {
         return response()->json($review->delete());
+    }
+
+    public function getPerson(Lietotajs $person)
+    {
+        return response()->json($person);
     }
 }
