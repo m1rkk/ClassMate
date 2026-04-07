@@ -3,7 +3,7 @@ import '@/App.css';
 import { Routes, Route } from "react-router-dom";
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
 import LoginPage from "@/pages/LoginPage/LoginPage";
-import ProtectedTest from "@/pages/ProtectedTest/ProtectedTest";
+import Dashboard from "@/pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
           <Route path="/" element={<Landing/>}/>
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/register" element={<RegisterPage/>}/>
-          <Route path="/potected" element={<ProtectedTest/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
   );
 }
