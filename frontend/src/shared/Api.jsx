@@ -38,4 +38,20 @@ const login = async (email, password) => {
     }
 }
 
-export { login, register };
+const me = async () => {
+    try {
+        const response = await api.get("/auth/me",{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+export { login, register, me };
+
