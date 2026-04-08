@@ -52,6 +52,36 @@ const me = async () => {
     }
 }
 
+const getStudentLessons = async (studentId) => {
+    try {
+        const response = await api.get(`appointment/${studentId}/byStudent`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+const getStudentByPerson = async (personId) => {
+    try {
+        const response = await api.get(`/getStudent/${personId}`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
 
-export { login, register, me };
+
+
+export { login, register, me, getStudentLessons, getStudentByPerson};
 
