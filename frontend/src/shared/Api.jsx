@@ -97,10 +97,57 @@ const deleteLesson = async (lessonId) =>{
     }
 }
 
+const getLessonsInMonth = async () => {
+    try {
+        const response = await api.get(`/appointments/month`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }catch (error) {}
+}
+
+const getLessonsInWeek = async () => {
+    try {
+        const response = await api.get(`/appointments/week`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }catch (error) {}
+}
+
+const getLessonsInThreeDays = async () => {
+    try {
+        const response = await api.get(`/appointments/inThreeDays`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }catch (error) {}
+}
+
+const getLessonsInDay = async () => {
+    try {
+        const response = await api.get(`/appointments/day`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }catch (error) {}
+}
 
 
 
 
 
-export { login, register, me, getStudentLessons, getStudentByPerson, deleteLesson };
+export { login, register, me, getStudentLessons, getStudentByPerson, deleteLesson, getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay };
 

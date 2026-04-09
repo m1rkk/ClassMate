@@ -36,11 +36,7 @@ export default function Dashboard() {
                     mixBlendMode="difference"
                     width={`86%`}
                     height={`50%`}
-                > <div className={`flex flex-row items-center justify-start w-full h-full p-4`}>
-                   <LessonsContainer/>
-                </div>
-
-
+                > <LessonsContainer/>
                 </GlassSurface>
             </section>
         </div>
