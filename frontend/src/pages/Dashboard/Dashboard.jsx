@@ -3,18 +3,7 @@ import DashboardButton from "@/shared/ui/DashboardButton";
 import ProfileComponent from "@/shared/ui/ProfileComponent";
 import LessonsCounter from "@/shared/ui/LessonsCounter";
 import Threads from "@/components/ui/Threads";
-import Lesson from "@/shared/ui/Lesson";
-import {me} from "@/shared/api";
-import {getStudentByPerson} from "@/shared/api";
-const loadUser = async () => {
-    const user = await me();
-    return user.LietotajaId;
-};
-const loadStudent = async () => {
-    const userId = await loadUser();
-    const student = await getStudentByPerson(userId);
-    return student.StudentuId;
-}
+import LessonsContainer from "@/shared/ui/LessonsContainer";
 
 export default function Dashboard() {
 
@@ -47,7 +36,11 @@ export default function Dashboard() {
                     mixBlendMode="difference"
                     width={`86%`}
                     height={`50%`}
-                > <Lesson id={1} price={"20"} date={"2026-01-01"} time={"10:00"} theme={"English"}/>
+                > <div className={`flex flex-row items-center justify-start w-full h-full p-4`}>
+                   <LessonsContainer/>
+                </div>
+
+
                 </GlassSurface>
             </section>
         </div>
