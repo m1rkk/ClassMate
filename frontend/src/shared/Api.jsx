@@ -64,6 +64,7 @@ const getStudentLessons = async (studentId) => {
     }
     catch (error) {
         console.error(error);
+        throw error;
     }
 }
 const getStudentByPerson = async (personId) => {
@@ -78,10 +79,28 @@ const getStudentByPerson = async (personId) => {
     }
     catch (error) {
         console.error(error);
+        throw error;
+    }
+}
+const deleteLesson = async (lessonId) =>{
+    try {
+        const response = await api.delete(`appointment/${lessonId}/delete`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }catch (error) {
+        console.error(error);
+        throw error;
     }
 }
 
 
 
-export { login, register, me, getStudentLessons, getStudentByPerson};
+
+
+
+export { login, register, me, getStudentLessons, getStudentByPerson, deleteLesson };
 
