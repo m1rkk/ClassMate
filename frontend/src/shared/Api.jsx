@@ -179,6 +179,19 @@ const getLessonsCountThisWeek = async () => {
         throw error;
     }
 }
+const getRoleByPerson = async (personId) =>{
+    try {
+        const response = await api.get(`/getRole/${personId}`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }catch (error) {
+        console.error(error);
+    }
+}
 
 
 
@@ -186,5 +199,6 @@ const getLessonsCountThisWeek = async () => {
 export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay,
-    getLessonsCountToday,getLessonsCountThisWeek };
+    getLessonsCountToday,getLessonsCountThisWeek
+    ,getRoleByPerson};
 
