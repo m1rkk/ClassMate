@@ -26,6 +26,7 @@ export default function LessonsContainer() {
 
                 const student = await getStudentByPerson(userId);
                 const studentId = student?.StudentuId;
+                localStorage.setItem("studentId", studentId);
                 if (!studentId) {
                     throw new Error("Student id not found");
                 }
