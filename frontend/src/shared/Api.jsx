@@ -97,57 +97,94 @@ const deleteLesson = async (lessonId) =>{
     }
 }
 
-const getLessonsInMonth = async () => {
+const getLessonsInMonth = async (studentId) => {
     try {
-        const response = await api.get(`/appointments/month`,{
+        const response = await api.get(`/appointments/month/${studentId}`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         });
         console.log(response.data);
         return response.data;
-    }catch (error) {}
+    }catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
-const getLessonsInWeek = async () => {
+const getLessonsInWeek = async (studentId) => {
     try {
-        const response = await api.get(`/appointments/week`,{
+        const response = await api.get(`/appointments/week/${studentId}`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         });
         console.log(response.data);
         return response.data;
-    }catch (error) {}
+    }catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
-const getLessonsInThreeDays = async () => {
+const getLessonsInThreeDays = async (studentId) => {
     try {
-        const response = await api.get(`/appointments/inThreeDays`,{
+        const response = await api.get(`/appointments/inThreeDays/${studentId}`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         });
         console.log(response.data);
         return response.data;
-    }catch (error) {}
+    }catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
-const getLessonsInDay = async () => {
+const getLessonsInDay = async (studentId) => {
     try {
-        const response = await api.get(`/appointments/day`,{
+        const response = await api.get(`/appointments/day/${studentId}`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         });
         console.log(response.data);
         return response.data;
-    }catch (error) {}
+    }catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+const getLessonsCountToday = async () => {
+    try {
+        const studentId = localStorage.getItem("studentId");
+        const todayLessons = await getLessonsInDay(studentId);
+        return todayLessons.length;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+const getLessonsCountThisWeek = async () => {
+    try {
+        const studentId = localStorage.getItem("studentId");
+        const thisWekLessons = await getLessonsInWeek(studentId);
+        return thisWekLessons.length;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
 
 
 
-
-export { login, register, me, getStudentLessons, getStudentByPerson, deleteLesson, getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay };
+export { login, register, me,
+    getStudentLessons, getStudentByPerson, deleteLesson,
+    getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay,
+    getLessonsCountToday,getLessonsCountThisWeek };
 
