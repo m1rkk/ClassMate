@@ -23,7 +23,7 @@ class DataController extends Controller
             'Maksa' => 'required|string|max:255',
             'Datums' => 'required|date',
             'Laiks' => 'required|date_format:H:i',
-            'Tema' => 'nullable|string|max:255',
+            'Tema' => 'nullable|string|max:100',
             'SkolotajaId' => 'required|exists:skolotajs,SkolotajaId',
             'StudentuId' => 'required|exists:students,StudentuId',
         ]);
@@ -125,4 +125,34 @@ class DataController extends Controller
     {
         return response()->json($person);
     }
+    public function getStudentByPerson(Lietotajs $person)
+    {
+        return response()->json($person->students()->first());
+    }
+
+    public function getAppointmentsByWeek(Studenti $student)
+    {
+        return response()->json($student->pieraksti()->whereDate('Datums', '>=', now()->startOfWeek())->whereDate('Datums', '<=', now()->endOfWeek())->get());
+    }
+
+    public function getAppointmentsByMonth(Studenti $student)
+    {
+        return response()->json($student->pieraksti()->whereMonth('Datums', now()->month)->whereYear('Datums', now()->year)->get());
+    }
+
+    public function getAppointmentsByDay(Studenti $student)
+    {
+        return response()->json($student->pieraksti()->whereDate('Datums', now()->toDateString())->get());
+    }
+
+    public function getAppointmentsByThreeDays(Studenti $student)
+    {
+        return response()->json(
+            $student->pieraksti()
+                ->whereDate('Datums', '>=', now()->toDateString())
+                ->whereDate('Datums', '<=', now()->addDays(3)->toDateString())
+                ->get()
+        );
+    }
+
 }

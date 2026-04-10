@@ -85,7 +85,7 @@ class AuthController extends Controller
             'token' => $token,
         ]);
     }
-    public function me(Request $request){    //poka chto zatichka budet rabotat kogda podkluchu Sanctum
+    public function me(Request $request){
         return response()->json($request->user());
     }
 
