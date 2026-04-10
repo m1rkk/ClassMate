@@ -1,6 +1,7 @@
 import axios from "axios";
 
 
+
 const api = axios.create({
     baseURL: "http://localhost:8000/api",
     withCredentials: true,
@@ -25,6 +26,7 @@ const register = async (name, surname, email,city = null,password, role) => {
     }
 }
 const login = async (email, password) => {
+
     try {
         const response = await api.post("/auth/login", {     //post request na nash endpoint v funkciju peredaetsa dva argumeta iz inputa
             Epasts: email,
@@ -33,8 +35,10 @@ const login = async (email, password) => {
         console.log(response.data);
         const token = response.data.token; //sohranajem token v peremenuju
         localStorage.setItem("token", token); // peremenuju v local storage
+        return response.data;
     } catch (error) {
         console.error(error);
+        throw error;
     }
 }
 
