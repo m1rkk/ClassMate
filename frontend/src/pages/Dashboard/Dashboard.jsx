@@ -14,7 +14,7 @@ export default function Dashboard() {
                 distance={0}
                 enableMouseInteraction
             />
-            <section className={`w-full h-[99vh] flex flex-col items-center justify-start gap-[5%]`}>
+            <section className={`w-full h-[99vh] flex flex-col items-center justify-start gap-[5%] mt-[1%]`}>
                 <div className={`flex flex-row items-center justify-between w-10/12`}>
                     <p className={`text-lg w-1/4 text-white`}>Tavs personals panelis, šeit tu vari redzēt visas stundas kas tevi gaida un pārvaldīt tos</p>
                     <DashboardButton role="student"/>
