@@ -11,13 +11,13 @@ export default function Lesson({id, theme, date, time, price, onDelete, isDeleti
                 </div>
                 <p>{price}</p>
             </div>
-            <button className={`bg-white border-none rounded-2xl w-[5%] flex items-center justify-center p-2`}><img src={editImg} alt="" /></button>
+            <button className={`bg-white border-none rounded-2xl w-[5%] flex items-center justify-center p-2`}><img src={editImg} alt="" className="w-[90%]"/></button>
             <button
                 className={`bg-white border-none rounded-2xl w-[5%] flex items-center justify-center p-2 ${isDeleting ? "opacity-60 cursor-not-allowed" : ""}`}
                 onClick={() => onDelete?.(id)}
                 disabled={isDeleting}
             >
-                <img src={bin} alt="delete lesson"/>
+                <img src={bin} alt="delete lesson" className="w-[90%]"/>
             </button>
         </div>
     )

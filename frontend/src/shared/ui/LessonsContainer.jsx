@@ -130,13 +130,38 @@ export default function LessonsContainer() {
             ))}
         </div>
         <div className={`flex flex-col items-center justify-start w-[20%] h-full gap-[2%] text-base`}>
-            <DashboardFilter period="month" onClick={() => handleFilterChange('month')} width="80%"/>
+            <DashboardFilter
+                period="month"
+                onClick={() => handleFilterChange('month')}
+                width="80%"
+                active={filter === 'month'}
+            />
             <div className={`flex flex-row items-center justify-center w-full gap-[2%]`}>
-                <DashboardFilter period="3 days" onClick={() => handleFilterChange('inThreeDays')} width="25%"/>
-                <DashboardFilter period="week" onClick={() => handleFilterChange('week')} width="35%"/>
-                <DashboardFilter period="today" onClick={() => handleFilterChange('today')} width="15%"/>
+                <DashboardFilter
+                    period="3 days"
+                    onClick={() => handleFilterChange('inThreeDays')}
+                    width="25%"
+                    active={filter === 'inThreeDays'}
+                />
+                <DashboardFilter
+                    period="week"
+                    onClick={() => handleFilterChange('week')}
+                    width="35%"
+                    active={filter === 'week'}
+                />
+                <DashboardFilter
+                    period="today"
+                    onClick={() => handleFilterChange('today')}
+                    width="15%"
+                    active={filter === 'today'}
+                />
             </div>
-            <DashboardFilter period="all" onClick={() => handleFilterChange('all')} width="20%"/>
+            <DashboardFilter
+                period="all"
+                onClick={() => handleFilterChange('all')}
+                width="20%"
+                active={filter === 'all'}
+            />
         </div>
     </div>
     )
