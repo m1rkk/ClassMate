@@ -155,4 +155,11 @@ class DataController extends Controller
         );
     }
 
+    public function getRoleByPerson(Lietotajs $person)
+    {
+        $isStudent = $person->students()->exists();
+
+        return response()->json($isStudent ? 'student' : 'teacher');
+    }
+
 }
