@@ -1,7 +1,7 @@
 import Dither from "@/components/ui/Dither";
 import GlassInput from "@/shared/ui/GlassInput";
 import GlassSurface from "@/components/ui/GlassSurface";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {login} from "@/shared/Api";
 
@@ -10,8 +10,19 @@ import {login} from "@/shared/Api";
 
 
 export default function LoginPage() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");   // hook dla email
     const [password, setPassword] = useState(""); // hook dla password
+
+    const handleLogin = async () => {
+        try {
+            await login(email, password);
+            navigate("/dashboard");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className={`w-full h-screen bg-black flex justify-between items-center`}>
             <div className={`w-2/3 h-full`}>
@@ -50,7 +61,7 @@ export default function LoginPage() {
                         width={`45%`}
                         height={`6%`}>
                         <button className={`bg-transparent w-full h-full text-white text-lg`}
-                                onClick={() => login(email, password)}>Login</button>
+                                onClick={handleLogin}>Login</button>
                     </GlassSurface>
 
                 </div>
