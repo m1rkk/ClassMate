@@ -1,5 +1,5 @@
 import profilePic from "@/assets/imgs/profilePic.png"
-import {me,getRoleByPerson} from  "@/shared/Api";
+import {me,getRoleByPerson, deletePerson} from  "@/shared/Api";
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,8 @@ export default function ProfileComponent() {
     const [city, setCity] = useState("");
     const [role, setRole] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [personId, setPersonId] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -20,6 +22,7 @@ export default function ProfileComponent() {
                const profile = await me();
                const role = await getRoleByPerson(profile.LietotajaId);
                if(isMounted){
+                   setPersonId(profile.LietotajaId);
                    setName(profile.Vards);
                    setSurname(profile.Uzvards);
                    setCity(profile.AtrasanasVieta);
@@ -46,6 +49,32 @@ export default function ProfileComponent() {
         navigate("/login");
     };
 
+    const handleDeleteAccount = async () => {
+        if (!personId || isDeleting) {
+            return;
+        }
+
+        const isConfirmed = window.confirm(
+            "Are you sure you want to delete your account? This action cannot be undone."
+        );
+
+        if (!isConfirmed) {
+            return;
+        }
+
+        try {
+            setIsDeleting(true);
+            await deletePerson(personId);
+            localStorage.clear();
+            navigate("/login");
+        } catch (e) {
+            console.log(e);
+            window.alert("Failed to delete account.");
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
     return (
         <div className={`flex flex-row items-center justify-center w-1/3 gap-2`}>
             <img src={profilePic} alt="" className="w-1/6"/>
@@ -62,8 +91,12 @@ export default function ProfileComponent() {
                     <button onClick={handleLogout} className={`bg-white border-none rounded-lg p-1 w-[35%]`}>
                         Log out
                     </button>
-                    <button className={`bg-[#FF6262] border-none rounded-lg p-1 w-1/2 text-white`}>
-                        Delete Account
+                    <button
+                        onClick={handleDeleteAccount}
+                        disabled={isDeleting || isLoading}
+                        className={`bg-[#FF6262] border-none rounded-lg p-1 w-1/2 text-white disabled:opacity-60 disabled:cursor-not-allowed`}
+                    >
+                        {isDeleting ? "Deleting..." : "Delete Account"}
                     </button>
                 </div>
             </div>

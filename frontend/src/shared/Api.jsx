@@ -193,6 +193,20 @@ const getRoleByPerson = async (personId) =>{
     }
 }
 
+const deletePerson = async (personId) => {
+    try {
+        const response = await api.delete(`/deletePerson/${personId}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 
 
 
@@ -200,5 +214,5 @@ export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay,
     getLessonsCountToday,getLessonsCountThisWeek
-    ,getRoleByPerson};
+    ,getRoleByPerson, deletePerson};
 
