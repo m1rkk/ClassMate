@@ -60,8 +60,8 @@ export default function LoginPage() {
     };
 
     return (
-        <div className={`w-full h-screen bg-black flex justify-between items-center`}>
-            <div className={`w-2/3 h-full`}>
+        <div className={`relative w-full min-h-screen bg-black flex flex-col md:h-screen md:flex-row md:justify-between md:items-center`}>
+            <div className={`relative w-full min-h-screen md:w-2/3 md:h-full`}>
                 <Dither
                     waveColor={[0.5,0.5,0.5]}
                     disableAnimation={false}
@@ -73,7 +73,7 @@ export default function LoginPage() {
                     waveSpeed={0.03}>
                 </Dither>
 
-                <div className={`absolute top-0 w-2/3 h-full flex justify-center items-center gap-[3%] flex-col`}>
+                <div className={`absolute top-0 w-full h-full flex justify-center items-center gap-[3%] flex-col`}>
                     <GlassInput placeholder={"email:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
                     <GlassInput placeholder={"password:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
 
@@ -104,7 +104,7 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            <div className={`w-1/3 h-full bg-black flex flex-col justify-around items-start`}>
+            <div className={`hidden w-1/3 h-full bg-black md:flex flex-col justify-around items-start`}>
                 <h1 className="text-white text-[clamp(1.8vw,5.5vw,7.8rem)] font-extrabold font-[Orbitron] rotate-90 ml-[-20%] mt-[10%]">
                     NEW WAY<br />TO<br />SCHEDULE
                 </h1>
@@ -129,25 +129,27 @@ export default function LoginPage() {
                         waveSpeed={0.03}
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <GlassSurface
-                            saturation={1}
-                            backgroundOpacity={0.1}
-                            borderWidth={0.08}
-                            brightness={45}
-                            opacity={0.85}
-                            blur={4}
-                            displace={0.6}
-                            distortionScale={30}
-                            redOffset={0}
-                            greenOffset={0}
-                            blueOffset={0}
-                            mixBlendMode="normal"
-                            width={`22rem`}
-                            height={`14rem`}>
-                            <div className="h-full w-full flex items-center justify-center">
-                                <div className="h-14 w-14 animate-spin rounded-full border-4 border-white border-t-transparent" />
-                            </div>
-                        </GlassSurface>
+                        <div className="w-[90vw] max-w-[22rem]">
+                            <GlassSurface
+                                saturation={1}
+                                backgroundOpacity={0.1}
+                                borderWidth={0.08}
+                                brightness={45}
+                                opacity={0.85}
+                                blur={4}
+                                displace={0.6}
+                                distortionScale={30}
+                                redOffset={0}
+                                greenOffset={0}
+                                blueOffset={0}
+                                mixBlendMode="normal"
+                                width={`100%`}
+                                height={`14rem`}>
+                                <div className="h-full w-full flex items-center justify-center">
+                                    <div className="h-14 w-14 animate-spin rounded-full border-4 border-white border-t-transparent" />
+                                </div>
+                            </GlassSurface>
+                        </div>
                     </div>
                 </div>
             )}
