@@ -15,9 +15,12 @@ use App\Http\Controllers\Api\DataController;
    */
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('allTeachers', [DataController::class, 'allTeachers'])->middleware('auth:sanctum');
+        Route::get('teacherByPerson/{person}', [DataController::class, 'teacherByPerson'])->middleware('auth:sanctum');
+
         Route::get('getPerson/{person}', [DataController::class, 'getPerson'])->middleware('auth:sanctum');
         Route::get('getStudent/{person}', [DataController::class, 'getStudentByPerson'])->middleware('auth:sanctum');
         Route::get('getRole/{person}', [DataController::class, 'getRoleByPerson'])->middleware('auth:sanctum');
+        Route::delete('deletePerson/{person}', [DataController::class, 'deletePerson'])->middleware('auth:sanctum');
 
         Route::get('appointment/{appointment}', [DataController::class, 'getAppointmentById'])->middleware('auth:sanctum');
         Route::get('appointment/{student}/byStudent', [DataController::class, 'getAppointmentByStudentId'])->middleware('auth:sanctum');

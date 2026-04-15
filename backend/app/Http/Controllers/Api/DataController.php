@@ -162,4 +162,14 @@ class DataController extends Controller
         return response()->json($isStudent ? 'student' : 'teacher');
     }
 
+    public function deletePerson(Lietotajs $person)
+    {
+        return response()->json($person->delete());
+    }
+
+    public function teacherByPerson(Lietotajs $person)
+    {
+        return response()->json($person->skolotajs()->first());
+    }
+
 }
