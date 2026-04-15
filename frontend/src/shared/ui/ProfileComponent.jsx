@@ -19,14 +19,13 @@ export default function ProfileComponent() {
        const loadProfile = async () => {
            try {
                setIsLoading(true);
-               const profile = await me();
-               const role = await getRoleByPerson(profile.LietotajaId);
+
                if(isMounted){
-                   setPersonId(profile.LietotajaId);
-                   setName(profile.Vards);
-                   setSurname(profile.Uzvards);
-                   setCity(profile.AtrasanasVieta);
-                   setRole(role);
+                   setPersonId(localStorage.getItem("userId"));
+                   setName(localStorage.getItem("name"));
+                   setSurname(localStorage.getItem("surname"));
+                   setCity(localStorage.getItem("city"));
+                   setRole(localStorage.getItem("role"));
                }
            }catch (e) {
                if(isMounted){
