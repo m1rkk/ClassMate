@@ -18,18 +18,7 @@ export default function LessonsContainer() {
                 setIsLoading(true);
                 setError("");
 
-                const user = await me();
-                const userId = user?.LietotajaId;
-                if (!userId) {
-                    throw new Error("User id not found");
-                }
-
-                const student = await getStudentByPerson(userId);
-                const studentId = student?.StudentuId;
-                localStorage.setItem("studentId", studentId);
-                if (!studentId) {
-                    throw new Error("Student id not found");
-                }
+                const studentId = localStorage.getItem('studentId');
 
                 if (filter === 'all') {
                     const data = await getStudentLessons(studentId);

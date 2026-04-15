@@ -12,7 +12,6 @@ export default function LessonsCounter({timePeriod}) {
             try {
              setIsLoading(true);
              const countToday = await getLessonsCountToday();
-
              const countThisWeek = await getLessonsCountThisWeek();
 
             if(isMounted){
