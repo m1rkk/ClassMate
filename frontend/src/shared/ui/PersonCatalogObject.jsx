@@ -19,7 +19,11 @@ export default function PersonCatalogObject ({key, name, surname, rating, city})
                 <div className={`flex flex-col items-center justify-center w-full`}>
                     <p className={`text-white`}>{name} {surname}</p>
                     <p className={`text-white`}>{city}</p>
-                    <p className={`text-white`}>{rating}</p>
+                    <div className={`flex flex-row items-center justify-center w-full`}>
+                        ({[...Array(rating)].map((_, idx) => (
+                        <p key={idx} className={`text-white`}>⭐</p>
+                    ))})
+                    </div>
                 </div>
                 <button className="bg-white text-black w-[80%] p-2 rounded-lg">
                     View
