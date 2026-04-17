@@ -225,6 +225,21 @@ const getTeacherByPerson = async (personId) => {
         throw error;
     }
 }
+const getAllTeachers = async () => {
+    try {
+        const response = await api.get(`/allTeachers`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
 
 
@@ -233,5 +248,5 @@ export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay,
     getLessonsCountToday,getLessonsCountThisWeek
-    ,getRoleByPerson, deletePerson, getTeacherByPerson};
+    ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers};
 
