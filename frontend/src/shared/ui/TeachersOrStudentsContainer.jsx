@@ -45,10 +45,10 @@ export default function TeachersOrStudentsContainer() {
                     </div>
                 )}
                 {!loading &&  (
-                    <div className={`w-full h-[60%] grid grid-cols-4`}>
+                    <div className={`w-full h-[62%] grid grid-cols-4`}>
                         {
                             teachers.map((teacher) => (
-                                <PersonCatalogObject key={teacher.SkolotajaId} rating={teacher.Reitings} name={teacher.lietotajs.Vards} surname={teacher.lietotajs.Uzvards} city={teacher.lietotajs.AtrasanasVieta} />
+                                <PersonCatalogObject key={teacher.SkolotajaId} rating={teacher.Reitings} name={teacher.lietotajs.Vards} surname={teacher.lietotajs.Uzvards} city={teacher.lietotajs.AtrasanasVieta}/>
                             ))
                         }
                     </div>
