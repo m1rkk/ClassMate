@@ -1,46 +1,85 @@
-import { getAllTeachers } from "@/shared/Api";
+import {getAllTeachers, searchForTeacher} from "@/shared/Api";
 import {useState, useEffect} from "react";
 import PersonCatalogObject from "@/shared/ui/PersonCatalogObject";
+import GlassInput from "@/shared/ui/GlassInput";
 
 export default function TeachersOrStudentsContainer() {
     const [teachers, setTeachers] = useState([]);
-    const [students, setStudents] = useState([]);
+    const [students, setStudents] = useState([])
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
+    const isStudent = localStorage.getItem("role") === "student";
 
-    if (localStorage.getItem("role") === "student") {
-        useEffect(() => {
+    useEffect(() => {
+        if (isStudent) {
             let isMounted = true;
             const loadTeachers = async () => {
                 try {
                     setLoading(true);
-                    const teachers = await getAllTeachers();
-                    if(isMounted){
+                    const term = searchTerm?.trim();
+                    console.log(term);
+                    const teachers = term ? await searchForTeacher(term) : await getAllTeachers();
+
+                    if (isMounted) {
                         setTeachers(teachers);
                     }
-                }catch (e) {
-                    if(isMounted){
+                } catch (e) {
+                    if (isMounted) {
                         console.log(e);
-                        setLoading(false);
-                        setTeachers([])
+                        setTeachers([]);
                     }
-                }finally {
-                    if(isMounted){
+                } finally {
+                    if (isMounted) {
                         setLoading(false);
                     }
                 }
-            }
+            };
+
             loadTeachers();
             return () => {
                 isMounted = false;
-            }
-        },[])
+            };
+        }else {
+            let isMounted = true;
+            const loadStudents = async () => {
+                try {
+                    setLoading(true);
+                    const term = searchTerm?.trim();
+                    console.log(term);
+                    const students = term ? await searchForTeacher(term) : await getAllTeachers();
 
+                    if (isMounted) {
+                        setStudents(students);
+                    }
+                } catch (e) {
+                    if (isMounted) {
+                        console.log(e);
+                        setStudents([]);
+                    }
+                } finally {
+                    if (isMounted) {
+                        setLoading(false);
+                    }
+                }
+            };
+
+            loadStudents();
+            return () => {
+                isMounted = false;
+            };
+        }
+
+
+    }, [searchTerm, isStudent]);
+
+    if (isStudent) {
         return (
-            <div className="w-[60%] h-full">
+            <div className="w-[60%] h-full flex flex-col items-start justify-start gap-4">
+                <GlassInput placeholder="Search teachers..." onChange={(e) => {setSearchTerm(e.target.value)}} width={"60%"}/>
                 {loading && (
-                    <div className={`w-full h-[50%] grid grid-cols-4`}>
+                    <div className={`w-full h-[60%] grid grid-cols-4`}>
                         {[...Array(8)].map((_, idx) => (
-                            <div key={idx} className="w-[60%] h-[60%] rounded-2xl bg-white/20 animate-pulse" />
+                            <div key={idx} className="w-[60%] h-[90%] rounded-2xl bg-white/20 animate-pulse" />
                         ))}
                     </div>
                 )}
@@ -58,4 +97,5 @@ export default function TeachersOrStudentsContainer() {
         )
     }
 
+    return null;
 }

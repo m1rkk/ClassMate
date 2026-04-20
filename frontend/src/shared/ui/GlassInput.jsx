@@ -9,17 +9,14 @@ export default function GlassInput(
     value}) {
     return(
     <GlassSurface
-        saturation={1}
-        backgroundOpacity={0}
-        borderWidth={0.1}
-        brightness={30}
-        opacity={0.5}
-        blur={3}
-        displace={0.7}
-        distortionScale={40}
-        redOffset={0}
-        greenOffset={0}
-        blueOffset={0}
+        displace={1} //blur
+        distortionScale={150} //angle
+        redOffset={30}
+        greenOffset={10}
+        blueOffset={20}
+        brightness={50}
+        opacity={50}
+        backgroundOpacity={0.01}
         mixBlendMode="difference"
         width={width}
         height={height}>

@@ -12,16 +12,17 @@ export default function PersonCatalogObject ({key, name, surname, rating, city})
           opacity={50}
           backgroundOpacity={0.01}
           mixBlendMode="difference"
-          width={`60%`}
-          height={`90%`}>
-            <div className="w-full h-full flex flex-col items-center justify-center gap-5">
+          width={`9vw`}
+          height={`25vh`}
+            style={{marginBottom: '4%'}}>
+            <div className="w-full h-full flex flex-col items-center justify-center gap-5 mt-4">
                 <img src={profilePic} alt="" className={`w-[40%]` }/>
                 <div className={`flex flex-col items-center justify-center w-full`}>
                     <p className={`text-white`}>{name} {surname}</p>
                     <p className={`text-white`}>{city}</p>
                     <div className={`flex flex-row items-center justify-center w-full`}>
                         ({[...Array(rating)].map((_, idx) => (
-                        <p key={idx} className={`text-white`}>⭐</p>
+                        <p key={idx}>⭐</p>
                     ))})
                     </div>
                 </div>
