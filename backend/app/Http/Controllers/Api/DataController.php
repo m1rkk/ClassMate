@@ -187,4 +187,26 @@ class DataController extends Controller
         );
     }
 
+    public function allStudentsOfTeacher(Skolotajs $teacher)
+    {
+        return response()->json(
+            $teacher->students()
+                ->with('lietotajs')
+                ->get()
+        );
+    }
+
+    public function studentSearch(Skolotajs $teacher,string $searchTerm)
+    {
+        return response()->json(
+            $teacher->students()
+                ->with('lietotajs')->whereHas('lietotajs', function ($query) use ($searchTerm) {
+                    $query->where('Vards', 'like', "%{$searchTerm}%")
+                        ->orWhere('Uzvards', 'like', "%{$searchTerm}%")
+                        ->orWhere('AtrasanasVieta', 'like', "%{$searchTerm}%");
+                })
+                ->get()
+        );
+    }
+
 }
