@@ -14,7 +14,9 @@ class DataController extends Controller
 {
     public function allTeachers()
     {
-        return Skolotajs::all();
+        return response()->json(
+            Skolotajs::with('lietotajs')->get()
+        );
     }
 
     public function makeAppointment(Request $request)
