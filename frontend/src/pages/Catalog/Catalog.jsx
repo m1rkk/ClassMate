@@ -12,7 +12,7 @@ export default function Catalog() {
                         distance={0}
                         enableMouseInteraction
                     />
-                    <section className={`w-full h-screen flex flex-col items-center justify-start gap-[5%] pt-4`}>
+                    <section className={`w-full h-screen flex flex-col items-center justify-start gap-[15%] pt-4`}>
                         <div className={`flex flex-row items-center justify-between w-10/12`}>
                             <p className={`text-lg w-1/4 text-white`}>Tavs personals panelis, šeit tu vari redzēt visas stundas kas tevi gaida un pārvaldīt tos</p>
                             <DashboardButton role="student"/>

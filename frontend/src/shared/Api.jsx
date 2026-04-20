@@ -240,6 +240,21 @@ const getAllTeachers = async () => {
         throw error;
     }
 }
+const searchForTeacher = async (searchTerm) => {
+    try {
+        const response = await api.get(`/teacherSearch/${encodeURIComponent(searchTerm)}`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
 
 
@@ -248,5 +263,5 @@ export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay,
     getLessonsCountToday,getLessonsCountThisWeek
-    ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers};
+    ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher};
 
