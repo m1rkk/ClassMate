@@ -26,7 +26,22 @@ export default function Catalog() {
     }
     else{
         return(
-            <div>Teacher</div>
+            <div className="relative w-full h-screen overflow-hidden">
+                <Threads
+                    amplitude={3}
+                    distance={0}
+                    enableMouseInteraction
+                />
+                <section className={`w-full h-screen flex flex-col items-center justify-start gap-[15%] pt-4`}>
+                    <div className={`flex flex-row items-center justify-between w-10/12`}>
+                        <p className={`text-lg w-1/4 text-white`}>Tavs personals panelis, šeit tu vari redzēt visas stundas kas tevi gaida un pārvaldīt tos</p>
+                        <DashboardButton role="teacher"/>
+                    </div>
+                    <div className={`flex flex-row items-center justify-end w-full h-full p-4`}>
+                        <TeachersOrStudentsContainer/>
+                    </div>
+                </section>
+            </div>
         )
     }
 

@@ -40,6 +40,7 @@ export default function LoginPage() {
                 localStorage.setItem('studentId', student?.StudentuId);
             }else if(role === "teacher"){
                 localStorage.setItem('role', "teacher");
+                console.log(localStorage.getItem('userId'));
                 const teacher = await getTeacherByPerson(localStorage.getItem('userId'));
                 if (!teacher.SkolotajaId) {
                     throw new Error("Teacher id not found");

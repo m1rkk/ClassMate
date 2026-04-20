@@ -1,6 +1,6 @@
 import GlassSurface from "@/components/ui/GlassSurface";
 import profilePic from "@/assets/imgs/profilePic.png"
-export default function PersonCatalogObject ({key, name, surname, rating, city}) {
+export default function PersonCatalogObject ({key, name, surname, rating = 0, city}) {
     return(
         <GlassSurface
             displace={1} //blur
@@ -20,11 +20,12 @@ export default function PersonCatalogObject ({key, name, surname, rating, city})
                 <div className={`flex flex-col items-center justify-center w-full`}>
                     <p className={`text-white`}>{name} {surname}</p>
                     <p className={`text-white`}>{city}</p>
-                    <div className={`flex flex-row items-center justify-center w-full`}>
+                    {rating === 0 && <p className={`text-white`}></p>}
+                    {rating > 0 && <div className={`flex flex-row items-center justify-center w-full`}>
                         ({[...Array(rating)].map((_, idx) => (
                         <p key={idx}>⭐</p>
                     ))})
-                    </div>
+                    </div>}
                 </div>
                 <button className="bg-white text-black w-[80%] p-2 rounded-lg">
                     View

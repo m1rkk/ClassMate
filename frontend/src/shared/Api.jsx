@@ -212,7 +212,7 @@ const deletePerson = async (personId) => {
 }
 const getTeacherByPerson = async (personId) => {
     try {
-        const response = await api.get(`/getTeacherByPerson/${personId}`,{
+        const response = await api.get(`/teacherByPerson/${personId}`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -255,13 +255,43 @@ const searchForTeacher = async (searchTerm) => {
         throw error;
     }
 }
-
-
+const getTeachersStudents = async () =>{
+    try {
+        const teacherId = localStorage.getItem("teacherId");
+        const response = await api.get(`/allStudentsOfTeacher/${teacherId}`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+const studentSearch = async (searchTerm) =>{
+    try {
+        const teacherId = localStorage.getItem("teacherId");
+        const response = await api.get(`/studentSearchByTeacher/${teacherId}/${encodeURIComponent(searchTerm)}`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
 
 export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay,
     getLessonsCountToday,getLessonsCountThisWeek
-    ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher};
+    ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher, getTeachersStudents, studentSearch};
 

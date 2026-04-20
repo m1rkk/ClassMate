@@ -1,4 +1,4 @@
-import {getAllTeachers, searchForTeacher} from "@/shared/Api";
+import {getAllTeachers, searchForTeacher,getTeachersStudents,studentSearch} from "@/shared/Api";
 import {useState, useEffect} from "react";
 import PersonCatalogObject from "@/shared/ui/PersonCatalogObject";
 import GlassInput from "@/shared/ui/GlassInput";
@@ -46,7 +46,7 @@ export default function TeachersOrStudentsContainer() {
                     setLoading(true);
                     const term = searchTerm?.trim();
                     console.log(term);
-                    const students = term ? await searchForTeacher(term) : await getAllTeachers();
+                    const students = term ? await studentSearch(term) : await getTeachersStudents();
 
                     if (isMounted) {
                         setStudents(students);
@@ -88,6 +88,29 @@ export default function TeachersOrStudentsContainer() {
                         {
                             teachers.map((teacher) => (
                                 <PersonCatalogObject key={teacher.SkolotajaId} rating={teacher.Reitings} name={teacher.lietotajs.Vards} surname={teacher.lietotajs.Uzvards} city={teacher.lietotajs.AtrasanasVieta}/>
+                            ))
+                        }
+                    </div>
+
+                )}
+            </div>
+        )
+    }else {
+        return (
+            <div className="w-[60%] h-full flex flex-col items-start justify-start gap-4">
+                <GlassInput placeholder="Search teachers..." onChange={(e) => {setSearchTerm(e.target.value)}} width={"60%"}/>
+                {loading && (
+                    <div className={`w-full h-[60%] grid grid-cols-4`}>
+                        {[...Array(8)].map((_, idx) => (
+                            <div key={idx} className="w-[60%] h-[90%] rounded-2xl bg-white/20 animate-pulse" />
+                        ))}
+                    </div>
+                )}
+                {!loading &&  (
+                    <div className={`w-full h-[62%] grid grid-cols-4`}>
+                        {
+                            students.map((student) => (
+                                <PersonCatalogObject key={student.StudentuId} name={student.lietotajs.Vards} surname={student.lietotajs.Uzvards} city={student.lietotajs.AtrasanasVieta}/>
                             ))
                         }
                     </div>
