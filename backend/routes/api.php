@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\DataController;
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('allTeachers', [DataController::class, 'allTeachers'])->middleware('auth:sanctum');
         Route::get('teacherByPerson/{person}', [DataController::class, 'teacherByPerson'])->middleware('auth:sanctum');
+        Route::get('teacherSearch/{searchTerm}', [DataController::class, 'teacherSearch'])->middleware('auth:sanctum');
 
         Route::get('getPerson/{person}', [DataController::class, 'getPerson'])->middleware('auth:sanctum');
         Route::get('getStudent/{person}', [DataController::class, 'getStudentByPerson'])->middleware('auth:sanctum');

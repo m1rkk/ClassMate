@@ -174,4 +174,17 @@ class DataController extends Controller
         return response()->json($person->skolotajs()->first());
     }
 
+    public function teacherSearch(string $searchTerm)
+    {
+        return response()->json(
+            Skolotajs::with('lietotajs')
+                ->whereHas('lietotajs', function ($query) use ($searchTerm) {
+                    $query->where('Vards', 'like', "%{$searchTerm}%")
+                        ->orWhere('Uzvards', 'like', "%{$searchTerm}%")
+                        ->orWhere('AtrasanasVieta', 'like', "%{$searchTerm}%");
+                })
+                ->get()
+        );
+    }
+
 }
