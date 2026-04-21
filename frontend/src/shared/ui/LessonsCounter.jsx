@@ -1,4 +1,4 @@
-import {getLessonsCountToday,getLessonsCountThisWeek} from "@/shared/Api";
+import {getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getTeacherLessonsCountThisWeek,getTeacherLessonsCountToday} from "@/shared/Api";
 import {useEffect, useState} from "react";
 
 export default function LessonsCounter({timePeriod}) {
@@ -8,28 +8,54 @@ export default function LessonsCounter({timePeriod}) {
     const [error, setError] = useState("");
     useEffect(() => {
         let isMounted = true;
-        const loadLessonsCount = async () => {
-            try {
-             setIsLoading(true);
-             const countToday = await getLessonsCountToday();
-             const countThisWeek = await getLessonsCountThisWeek();
+        if(localStorage.getItem("role") === "student") {
+            const loadLessonsCount = async () => {
+                try {
+                    setIsLoading(true);
+                    const countToday = await getStudentLessonsCountToday();
+                    const countThisWeek = await getStudentLessonsCountThisWeek();
 
-            if(isMounted){
-                setLessonsCountToday(countToday);
-                setLessonsCountThisWeek(countThisWeek);
-                setIsLoading(false);
-            }
-            }catch (e) {
-                if (isMounted) {
-                    setError("Failed to load lessons count");
+                    if(isMounted){
+                        setLessonsCountToday(countToday);
+                        setLessonsCountThisWeek(countThisWeek);
+                        setIsLoading(false);
+                    }
+                }catch (e) {
+                    if (isMounted) {
+                        setError("Failed to load lessons count");
+                    }
+                } finally {
+                    if (isMounted) {
+                        setIsLoading(false);
+                    }
                 }
-            } finally {
-                if (isMounted) {
-                    setIsLoading(false);
+            }
+            loadLessonsCount();
+        }else {
+            const loadLessonsCount = async () => {
+                try {
+                    setIsLoading(true);
+                    const countToday = await getTeacherLessonsCountToday();
+                    const countThisWeek = await getTeacherLessonsCountThisWeek();
+
+                    if(isMounted){
+                        setLessonsCountToday(countToday);
+                        setLessonsCountThisWeek(countThisWeek);
+                        setIsLoading(false);
+                    }
+                }catch (e) {
+                    if (isMounted) {
+                        setError("Failed to load lessons count");
+                    }
+                } finally {
+                    if (isMounted) {
+                        setIsLoading(false);
+                    }
                 }
             }
+            loadLessonsCount();
         }
-        loadLessonsCount();
+
         return () => {
             isMounted = false;
         }

@@ -101,9 +101,9 @@ const deleteLesson = async (lessonId) =>{
     }
 }
 
-const getLessonsInMonth = async (studentId) => {
+const getStudentLessonsWithFilter = async (studentId, filter) => {
     try {
-        const response = await api.get(`/appointments/month/${studentId}`,{
+        const response = await api.get(`/appointments/${filter}/${studentId}/byStudent`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -116,55 +116,12 @@ const getLessonsInMonth = async (studentId) => {
     }
 }
 
-const getLessonsInWeek = async (studentId) => {
-    try {
-        const response = await api.get(`/appointments/week/${studentId}`,{
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        });
-        console.log(response.data);
-        return response.data;
-    }catch (error) {
-        console.error(error);
-        throw error;
-    }
-}
 
-const getLessonsInThreeDays = async (studentId) => {
-    try {
-        const response = await api.get(`/appointments/inThreeDays/${studentId}`,{
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        });
-        console.log(response.data);
-        return response.data;
-    }catch (error) {
-        console.error(error);
-        throw error;
-    }
-}
 
-const getLessonsInDay = async (studentId) => {
-    try {
-        const response = await api.get(`/appointments/day/${studentId}`,{
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        });
-        console.log(response.data);
-        return response.data;
-    }catch (error) {
-        console.error(error);
-        throw error;
-    }
-}
-
-const getLessonsCountToday = async () => {
+const getStudentLessonsCountToday = async () => {
     try {
         const studentId = localStorage.getItem("studentId");
-        const todayLessons = await getLessonsInDay(studentId);
+        const todayLessons = await getStudentLessonsWithFilter(studentId,"day");
         return todayLessons.length;
     }
     catch (error) {
@@ -172,10 +129,10 @@ const getLessonsCountToday = async () => {
         throw error;
     }
 }
-const getLessonsCountThisWeek = async () => {
+const getStudentLessonsCountThisWeek = async () => {
     try {
         const studentId = localStorage.getItem("studentId");
-        const thisWekLessons = await getLessonsInWeek(studentId);
+        const thisWekLessons = await getStudentLessonsWithFilter(studentId,"week");
         return thisWekLessons.length;
     }
     catch (error) {
@@ -183,6 +140,59 @@ const getLessonsCountThisWeek = async () => {
         throw error;
     }
 }
+
+const getTeachersLessons = async (teacherId) => {
+    try {
+        const response = await api.get(`/appointments/${teacherId}/byTeacher`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+const getTeacherLessonsWithFilter = async (teacherId, filter) => {
+    try {
+        const response = await api.get(`/appointments/${filter}/${teacherId}/byTeacher`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+const getTeacherLessonsCountToday = async () => {
+    try {
+        const teacherId = localStorage.getItem("teacherId")
+        const todayLessons = await getTeacherLessonsWithFilter(teacherId,"day");
+        return todayLessons.length;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+const getTeacherLessonsCountThisWeek = async () => {
+    try {
+        const teacherId = localStorage.getItem("teacherId");
+        const thisWekLessons = await getTeacherLessonsWithFilter(teacherId,"week");
+        return thisWekLessons.length;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 const getRoleByPerson = async (personId) =>{
     try {
         const response = await api.get(`/getRole/${personId}`,{
@@ -291,7 +301,7 @@ const studentSearch = async (searchTerm) =>{
 
 export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
-    getLessonsInMonth, getLessonsInWeek, getLessonsInThreeDays, getLessonsInDay,
-    getLessonsCountToday,getLessonsCountThisWeek
-    ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher, getTeachersStudents, studentSearch};
+    getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getStudentLessonsWithFilter
+    ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher,
+    getTeachersStudents, studentSearch,getTeachersLessons,getTeacherLessonsWithFilter,getTeacherLessonsCountToday,getTeacherLessonsCountThisWeek};
 

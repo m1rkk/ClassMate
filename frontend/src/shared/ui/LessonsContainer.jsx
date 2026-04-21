@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteLesson, getStudentByPerson, getStudentLessons, me, getLessonsInWeek, getLessonsInMonth, getLessonsInThreeDays, getLessonsInDay } from "@/shared/Api";
+import { deleteLesson, getStudentByPerson, getStudentLessons, me, getStudentLessonsWithFilter, getTeachersLessons, getTeacherLessonsWithFilter } from "@/shared/Api";
 import Lesson from "@/shared/ui/Lesson";
 import DashboardFilter from "@/shared/ui/DashboardFilter";
 
@@ -12,60 +12,117 @@ export default function LessonsContainer() {
 
     useEffect(() => {
         let isMounted = true;
+        if(localStorage.getItem("role") === "student"){
+            const loadLessons = async () => {
+                try {
+                    setIsLoading(true);
+                    setError("");
 
-        const loadLessons = async () => {
-            try {
-                setIsLoading(true);
-                setError("");
+                    const studentId = localStorage.getItem('studentId');
 
-                const studentId = localStorage.getItem('studentId');
+                    if (filter === 'all') {
+                        const data = await getStudentLessons(studentId);
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'month') {
+                        const data = await getStudentLessonsWithFilter(studentId,"month");
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'week') {
+                        const data = await getStudentLessonsWithFilter(studentId,'week');
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'inThreeDays') {
+                        const data = await getStudentLessonsWithFilter(studentId,'inThreeDays');
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'today') {
+                        const data = await getStudentLessonsWithFilter(studentId,"day");
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else {
+                        throw new Error("Invalid filter");
+                    }
+                } catch (e) {
+                    if (isMounted) {
+                        setError("Failed to load lessons");
+                        setLessons([]);
+                    }
+                } finally {
+                    if (isMounted) {
+                        setIsLoading(false);
+                    }
+                }
+            };
 
-                if (filter === 'all') {
-                    const data = await getStudentLessons(studentId);
-                    if (isMounted) {
-                        setLessons(Array.isArray(data) ? data : []);
-                    }
-                }
-                else if (filter === 'month') {
-                    const data = await getLessonsInMonth(studentId);
-                    if (isMounted) {
-                        setLessons(Array.isArray(data) ? data : []);
-                    }
-                }
-                else if (filter === 'week') {
-                    const data = await getLessonsInWeek(studentId);
-                    if (isMounted) {
-                        setLessons(Array.isArray(data) ? data : []);
-                    }
-                }
-                else if (filter === 'inThreeDays') {
-                    const data = await getLessonsInThreeDays(studentId);
-                    if (isMounted) {
-                        setLessons(Array.isArray(data) ? data : []);
-                    }
-                }
-                else if (filter === 'today') {
-                    const data = await getLessonsInDay(studentId);
-                    if (isMounted) {
-                        setLessons(Array.isArray(data) ? data : []);
-                    }
-                }
-                else {
-                    throw new Error("Invalid filter");
-                }
-            } catch (e) {
-                if (isMounted) {
-                    setError("Failed to load lessons");
-                    setLessons([]);
-                }
-            } finally {
-                if (isMounted) {
-                    setIsLoading(false);
-                }
-            }
-        };
+            loadLessons();
+        }else {
+            const loadLessons = async () => {
+                try {
+                    setIsLoading(true);
+                    setError("");
 
-        loadLessons();
+                    const teacherId = localStorage.getItem('teacherId');
+
+                    if (filter === 'all') {
+                        const data = await getTeachersLessons(teacherId);
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'month') {
+                        const data = await getTeacherLessonsWithFilter(teacherId,"month");
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'week') {
+                        const data = await getTeacherLessonsWithFilter(teacherId,'week');
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'inThreeDays') {
+                        const data = await getTeacherLessonsWithFilter(teacherId,'inThreeDays');
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else if (filter === 'today') {
+                        const data = await getTeacherLessonsWithFilter(teacherId,"day");
+                        if (isMounted) {
+                            setLessons(Array.isArray(data) ? data : []);
+                        }
+                    }
+                    else {
+                        throw new Error("Invalid filter");
+                    }
+                } catch (e) {
+                    if (isMounted) {
+                        setError("Failed to load lessons");
+                        setLessons([]);
+                    }
+                } finally {
+                    if (isMounted) {
+                        setIsLoading(false);
+                    }
+                }
+            };
+
+            loadLessons();
+        }
+
+
 
         return () => {
             isMounted = false;
