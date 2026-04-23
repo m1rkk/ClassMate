@@ -12,10 +12,9 @@ export default function PersonCatalogObject ({key, name, surname, rating = 0, ci
           opacity={50}
           backgroundOpacity={0.01}
           mixBlendMode="difference"
-          width={`9vw`}
-          height={`25vh`}
-            style={{marginBottom: '4%'}}>
-            <div className="w-full h-full flex flex-col items-center justify-center gap-5 mt-4">
+          width={`10vw`}
+          height={`30vh`}>
+            <div className="w-full h-full flex flex-col items-center justify-center gap-5">
                 <img src={profilePic} alt="" className={`w-[40%]` }/>
                 <div className={`flex flex-col items-center justify-center w-full`}>
                     <p className={`text-white`}>{name} {surname}</p>
