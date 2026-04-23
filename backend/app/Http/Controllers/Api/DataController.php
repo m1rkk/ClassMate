@@ -132,25 +132,49 @@ class DataController extends Controller
         return response()->json($person->students()->first());
     }
 
-    public function getAppointmentsByWeek(Studenti $student)
+    public function getStudentAppointmentsByWeek(Studenti $student)
     {
         return response()->json($student->pieraksti()->whereDate('Datums', '>=', now()->startOfWeek())->whereDate('Datums', '<=', now()->endOfWeek())->get());
     }
 
-    public function getAppointmentsByMonth(Studenti $student)
+    public function getStudentAppointmentsByMonth(Studenti $student)
     {
         return response()->json($student->pieraksti()->whereMonth('Datums', now()->month)->whereYear('Datums', now()->year)->get());
     }
 
-    public function getAppointmentsByDay(Studenti $student)
+    public function getStudentAppointmentsByDay(Studenti $student)
     {
         return response()->json($student->pieraksti()->whereDate('Datums', now()->toDateString())->get());
     }
 
-    public function getAppointmentsByThreeDays(Studenti $student)
+    public function getStudentAppointmentsByThreeDays(Studenti $student)
     {
         return response()->json(
             $student->pieraksti()
+                ->whereDate('Datums', '>=', now()->toDateString())
+                ->whereDate('Datums', '<=', now()->addDays(3)->toDateString())
+                ->get()
+        );
+    }
+    public function getTeacherAppointmentsByWeek(Skolotajs $teacher)
+    {
+        return response()->json($teacher->pieraksti()->whereDate('Datums', '>=', now()->startOfWeek())->whereDate('Datums', '<=', now()->endOfWeek())->get());
+    }
+
+    public function getTeacherAppointmentsByMonth(Skolotajs $teacher)
+    {
+        return response()->json($teacher->pieraksti()->whereMonth('Datums', now()->month)->whereYear('Datums', now()->year)->get());
+    }
+
+    public function getTeacherAppointmentsByDay(Skolotajs $teacher)
+    {
+        return response()->json($teacher->pieraksti()->whereDate('Datums', now()->toDateString())->get());
+    }
+
+    public function getTeacherAppointmentsByThreeDays(Skolotajs $teacher)
+    {
+        return response()->json(
+            $teacher->pieraksti()
                 ->whereDate('Datums', '>=', now()->toDateString())
                 ->whereDate('Datums', '<=', now()->addDays(3)->toDateString())
                 ->get()

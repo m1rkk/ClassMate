@@ -27,14 +27,19 @@ use App\Http\Controllers\Api\DataController;
         Route::delete('deletePerson/{person}', [DataController::class, 'deletePerson'])->middleware('auth:sanctum');
 
         Route::get('appointment/{appointment}', [DataController::class, 'getAppointmentById'])->middleware('auth:sanctum');
-        Route::get('appointment/{student}/byStudent', [DataController::class, 'getAppointmentByStudentId'])->middleware('auth:sanctum');
-        Route::get('appointment/{teacher}/byTeacher', [DataController::class, 'getAppointmentByTeacherId'])->middleware('auth:sanctum');
-
         Route::get('appointments', [DataController::class, 'getAppointments'])->middleware('auth:sanctum');
-        Route::get('appointments/week/{student}', [DataController::class, 'getAppointmentsByWeek'])->middleware('auth:sanctum');
-        Route::get('appointments/month/{student}', [DataController::class, 'getAppointmentsByMonth'])->middleware('auth:sanctum');
-        Route::get('appointments/day/{student}', [DataController::class, 'getAppointmentsByDay'])->middleware('auth:sanctum');
-        Route::get('appointments/inThreeDays/{student}', [DataController::class, 'getAppointmentsByThreeDays'])->middleware('auth:sanctum');
+
+        Route::get('appointment/{teacher}/byTeacher', [DataController::class, 'getAppointmentByTeacherId'])->middleware('auth:sanctum');
+        Route::get('appointments/week/{teacher}/byTeacher', [DataController::class, 'getTeacherAppointmentsByWeek'])->middleware('auth:sanctum');
+        Route::get('appointments/month/{teacher}/byTeacher', [DataController::class, 'getTeacherAppointmentsByMonth'])->middleware('auth:sanctum');
+        Route::get('appointments/day/{teacher}/byTeacher', [DataController::class, 'getTeacherAppointmentsByDay'])->middleware('auth:sanctum');
+        Route::get('appointments/inThreeDays/{teacher}/byTeacher', [DataController::class, 'getTeacherAppointmentsByThreeDays'])->middleware('auth:sanctum');
+
+        Route::get('appointment/{student}/byStudent', [DataController::class, 'getAppointmentByStudentId'])->middleware('auth:sanctum');
+        Route::get('appointments/week/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByWeek'])->middleware('auth:sanctum');
+        Route::get('appointments/month/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByMonth'])->middleware('auth:sanctum');
+        Route::get('appointments/day/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByDay'])->middleware('auth:sanctum');
+        Route::get('appointments/inThreeDays/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByThreeDays'])->middleware('auth:sanctum');
 
         Route::post('appointment', [DataController::class, 'makeAppointment'])->middleware('auth:sanctum');
         Route::delete('appointment/{appointment}/delete', [DataController::class, 'deleteAppointment'])->middleware('auth:sanctum');
