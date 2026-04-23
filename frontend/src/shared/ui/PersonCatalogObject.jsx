@@ -4,6 +4,7 @@ import GlassSurface from "@/components/ui/GlassSurface";
 import profilePic from "@/assets/imgs/profilePic.png";
 import Calendar from "@/shared/ui/Calendar";
 import {useState} from "react";
+import TimePicker from "@/shared/ui/TimePicker";
 export default function PersonCatalogObject({
     personId,
     name,
@@ -73,9 +74,10 @@ export default function PersonCatalogObject({
                             </div>
                         </div>
                     </div>
-                    <div className={`w-full h-full flex flex-col items-center justify-center}`}>
+                    <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-3`}>
                     <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
                     <p className="text-white text-sm mt-2">Selected date: {selectedDate.toLocaleDateString("en-US")}</p>
+                    <TimePicker time={time} setTime={setTime}/>
                     </div>
                 </div>
             )}
