@@ -86,6 +86,29 @@ const getStudentByPerson = async (personId) => {
         throw error;
     }
 }
+
+const bookLesson = async (price = "20", date, time, theme, teacherId, studentId) =>{
+    try{
+        const response = await api.post("/appointment/book",{
+            Maksa: price,
+            Datums: date,
+            Laiks: time,
+            Tema: theme,
+            SkolotajaId: teacherId,
+            StudentuId: studentId,
+        },{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 const deleteLesson = async (lessonId) =>{
     try {
         const response = await api.delete(`appointment/${lessonId}/delete`,{
@@ -303,5 +326,5 @@ export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getStudentLessonsWithFilter
     ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher,
-    getTeachersStudents, studentSearch,getTeachersLessons,getTeacherLessonsWithFilter,getTeacherLessonsCountToday,getTeacherLessonsCountThisWeek};
+    getTeachersStudents, studentSearch,getTeachersLessons,getTeacherLessonsWithFilter,getTeacherLessonsCountToday,getTeacherLessonsCountThisWeek, bookLesson};
 
