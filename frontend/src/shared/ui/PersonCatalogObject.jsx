@@ -5,6 +5,9 @@ import profilePic from "@/assets/imgs/profilePic.png";
 import Calendar from "@/shared/ui/Calendar";
 import {useState} from "react";
 import TimePicker from "@/shared/ui/TimePicker";
+import ThemePicker from "@/shared/ui/ThemePicker";
+import BookBtn from "@/shared/ui/BookBtn";
+
 export default function PersonCatalogObject({
     personId,
     name,
@@ -19,8 +22,16 @@ export default function PersonCatalogObject({
     const[year, setYear] = useState(now.getFullYear());
     const [day, setDay] = useState(now.getDate());
     const selectedDate = new Date(year, month, day);
+    const formattedDate =
+        selectedDate.getFullYear() +
+        "-" +
+        String(selectedDate.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(selectedDate.getDate()).padStart(2, "0");
 
     const [time, setTime] = useState("");
+
+    const [theme, setTheme] = useState("");
 
     return (
         <GlassSurface
@@ -35,7 +46,7 @@ export default function PersonCatalogObject({
             mixBlendMode="difference"
             className="transition-all duration-500 ease-out"
             width={isExpanded ? "min(90%)" : "10vw"}
-            height={isExpanded ? "50vh" : "30vh"}
+            height={isExpanded ? "85%" : "30vh"}
         > {!isExpanded && (
             <div className={`w-full h-full flex flex-col items-center justify-center ${isExpanded ? "gap-8" : "gap-5"}`}>
             <img src={profilePic} alt="" className={isExpanded ? "w-[20%] min-w-[130px]" : "w-[40%]"} />
@@ -74,10 +85,12 @@ export default function PersonCatalogObject({
                             </div>
                         </div>
                     </div>
-                    <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-3`}>
+                    <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-4`}>
                     <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
                     <p className="text-white text-sm mt-2">Selected date: {selectedDate.toLocaleDateString("en-US")}</p>
                     <TimePicker time={time} setTime={setTime}/>
+                    <ThemePicker theme={theme} setTheme={setTheme}/>
+                    <BookBtn price={"10"} date={formattedDate} time={time} theme={theme} teacherId={personId} studentId={localStorage.getItem("studentId")}/>
                     </div>
                 </div>
             )}
