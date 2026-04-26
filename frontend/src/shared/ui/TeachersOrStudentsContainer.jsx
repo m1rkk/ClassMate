@@ -1,4 +1,4 @@
-import { getAllTeachers, searchForTeacher, getTeachersStudents, studentSearch } from "@/shared/Api";
+﻿import { getAllTeachers, searchForTeacher, getTeachersStudents, studentSearch } from "@/shared/Api";
 import { useState, useEffect } from "react";
 import PersonCatalogObject from "@/shared/ui/PersonCatalogObject";
 import GlassInput from "@/shared/ui/GlassInput";
@@ -93,7 +93,7 @@ export default function TeachersOrStudentsContainer() {
         <div className="w-full flex flex-col items-center justify-start gap-8 h-full">
             <div className="flex flex-row items-center justify-start w-[85%] h-[6%]">
                 <GlassInput
-                    placeholder={isStudent ? "Search teachers..." : "Search your students..."}
+                    placeholder={isStudent ? "Meklēt skolotājus..." : "Meklēt savus skolēnus..."}
                     onChange={(e) => {
                         setSearchTerm(e.target.value);
                     }}

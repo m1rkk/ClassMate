@@ -1,18 +1,14 @@
-import Dither from "@/components/ui/Dither";
+﻿import Dither from "@/components/ui/Dither";
 import GlassInput from "@/shared/ui/GlassInput";
 import GlassSurface from "@/components/ui/GlassSurface";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {getRoleByPerson, getStudentByPerson, login, me,getTeacherByPerson} from "@/shared/Api";
 
-
-
-
-
 export default function LoginPage() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");   // hook dla email
-    const [password, setPassword] = useState(""); // hook dla password
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async () => {
@@ -51,7 +47,6 @@ export default function LoginPage() {
             }
             console.log(localStorage.getItem('role'));
 
-
             navigate("/dashboard");
         } catch (error) {
             console.error(error);
@@ -75,11 +70,11 @@ export default function LoginPage() {
                 </Dither>
 
                 <div className={`absolute top-0 w-full h-full flex justify-center items-center gap-[3%] flex-col`}>
-                    <GlassInput placeholder={"email:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
-                    <GlassInput placeholder={"password:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
+                    <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
+                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
 
                     <div className={`flex items-center justify-start gap-4 w-[45%]`}>
-                        <div className={`text-white`}>Don't have an account? <Link to={`/register`} className={`text-blue-700 font-black`}>Click</Link></div>
+                        <div className={`text-white`}>Nav konta? <Link to={`/register`} className={`text-blue-700 font-black`}>Spied šeit</Link></div>
                     </div>
 
                     <GlassSurface
@@ -99,7 +94,7 @@ export default function LoginPage() {
                         height={`6%`}>
                         <button className={`bg-transparent w-full h-full text-white text-lg disabled:opacity-60 disabled:cursor-not-allowed`}
                                 disabled={isLoading}
-                                onClick={handleLogin}>Login</button>
+                                onClick={handleLogin}>Pieslēgties</button>
                     </GlassSurface>
 
                 </div>
@@ -110,7 +105,7 @@ export default function LoginPage() {
                     NEW WAY<br />TO<br />SCHEDULE
                 </h1>
                 <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-right">
-                    Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām. Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām..
+                    Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
                 </div>
                 <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-left">
                     Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.

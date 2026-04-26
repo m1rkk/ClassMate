@@ -1,5 +1,5 @@
-import profilePic from "@/assets/imgs/profilePic.png"
-import {me,getRoleByPerson, deletePerson} from  "@/shared/Api";
+﻿import profilePic from "@/assets/imgs/profilePic.png"
+import {deletePerson} from  "@/shared/Api";
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -43,6 +43,8 @@ export default function ProfileComponent() {
        }
     },[]);
 
+    const roleLabel = role === "teacher" ? "skolotājs" : role === "student" ? "students" : role;
+
     const handleLogout = () => {
         localStorage.clear();
         navigate("/login");
@@ -54,7 +56,7 @@ export default function ProfileComponent() {
         }
 
         const isConfirmed = window.confirm(
-            "Are you sure you want to delete your account? This action cannot be undone."
+            "Vai tiešām vēlies dzēst kontu? Šo darbību nevar atsaukt."
         );
 
         if (!isConfirmed) {
@@ -68,7 +70,7 @@ export default function ProfileComponent() {
             navigate("/login");
         } catch (e) {
             console.log(e);
-            window.alert("Failed to delete account.");
+            window.alert("Neizdevās dzēst kontu.");
         } finally {
             setIsDeleting(false);
         }
@@ -84,18 +86,18 @@ export default function ProfileComponent() {
                 </div>
                 <div className={`text-base text-white w-full`}>
                     {isLoading && (<div className={`w-20 h-5 animate-pulse bg-white/20 pt-2`}></div>)}
-                    {!isLoading && city + ", " + role}
+                    {!isLoading && city + ", " + roleLabel}
                 </div>
                 <div className={`flex flex-row items-center justify-start w-full mt-[5%] gap-6`}>
                     <button onClick={handleLogout} className={`bg-white border-none rounded-lg p-1 w-[35%]`}>
-                        Log out
+                        Izrakstīties
                     </button>
                     <button
                         onClick={handleDeleteAccount}
                         disabled={isDeleting || isLoading}
                         className={`bg-[#FF6262] border-none rounded-lg p-1 w-1/2 text-white disabled:opacity-60 disabled:cursor-not-allowed`}
                     >
-                        {isDeleting ? "Deleting..." : "Delete Account"}
+                        {isDeleting ? "Dzēš..." : "Dzēst kontu"}
                     </button>
                 </div>
             </div>

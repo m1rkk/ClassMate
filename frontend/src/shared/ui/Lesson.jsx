@@ -1,4 +1,4 @@
-import bin from "@/assets/imgs/mingcute_delete-line.png"
+﻿import bin from "@/assets/imgs/mingcute_delete-line.png"
 import editImg from "@/assets/imgs/uil_pen.png"
 
 export default function Lesson({id, theme, date, time, price, onDelete, isDeleting = false}) {
@@ -17,7 +17,7 @@ export default function Lesson({id, theme, date, time, price, onDelete, isDeleti
                 onClick={() => onDelete?.(id)}
                 disabled={isDeleting}
             >
-                <img src={bin} alt="delete lesson" className="w-[90%]"/>
+                <img src={bin} alt="dzēst stundu" className="w-[90%]"/>
             </button>
         </div>
     )

@@ -1,4 +1,4 @@
-import {bookLesson} from "@/shared/Api";
+﻿import {bookLesson} from "@/shared/Api";
 import {useState} from "react";
 
 export default function BookBtn({price, date, time, theme, teacherId, studentId}) {
@@ -27,9 +27,9 @@ export default function BookBtn({price, date, time, theme, teacherId, studentId}
             {isLoading ? (
                 <div className="w-5 h-5 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
             ) : isBooked ? (
-                "Lesson booked"
+                "Stunda rezervēta"
             ) : (
-                "Book lesson"
+                "Rezervēt stundu"
             )}
         </button>
     )

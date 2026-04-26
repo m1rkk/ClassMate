@@ -1,21 +1,22 @@
-import {useState} from "react";
+﻿import {useState} from "react";
 import ThemePickerOption from "./ThemePickerOption";
+
 export default function ThemePicker({theme, setTheme}) {
 
     return(
         <div className="flex flex-row flex-wrap items-center justify-center w-[70%] gap-4">
-            <ThemePickerOption themeValue={"Mathematics"} onClick={() => {
-                setTheme("Mathematics")
+            <ThemePickerOption themeValue={"Matemātika"} onClick={() => {
+                setTheme("Matemātika")
             }
-            } selected={"Mathematics" === theme}/>
-            <ThemePickerOption themeValue={"Physics"} onClick={() => {
-                setTheme("Physics")
+            } selected={"Matemātika" === theme}/>
+            <ThemePickerOption themeValue={"Fizika"} onClick={() => {
+                setTheme("Fizika")
             }
-            } selected={"Physics" === theme}/>
-            <ThemePickerOption themeValue={"Programming"} onClick={() => {
-                setTheme("Programming")
+            } selected={"Fizika" === theme}/>
+            <ThemePickerOption themeValue={"Programmēšana"} onClick={() => {
+                setTheme("Programmēšana")
             }
-            } selected={"Programming" === theme}/>
+            } selected={"Programmēšana" === theme}/>
         </div>
     )
 }

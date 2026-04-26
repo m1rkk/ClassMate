@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import * as React from "react"
 import GlassSurface from "@/components/ui/GlassSurface";
 import profilePic from "@/assets/imgs/profilePic.png";
@@ -32,11 +32,8 @@ export default function PersonCatalogObject({
         String(selectedDate.getDate()).padStart(2, "0");
 
     const [time, setTime] = useState("");
-
     const [theme, setTheme] = useState("");
-
     const [addingExpand, setAddingExpand] = useState(false);
-
     const [noteText, setNoteText] = useState("");
 
     return (
@@ -73,7 +70,7 @@ export default function PersonCatalogObject({
                 onClick={() => onView?.(personId)}
                 className="bg-white text-black w-[80%] p-2 rounded-lg"
             >
-                {isExpanded ? "Close" : "View"}
+                {isExpanded ? "Aizvērt" : "Atvērt"}
             </button>
         </div>)
             }
@@ -93,7 +90,7 @@ export default function PersonCatalogObject({
                     </div>
                     <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-4`}>
                     <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
-                    <p className="text-white text-sm mt-2">Selected date: {selectedDate.toLocaleDateString("en-US")}</p>
+                    <p className="text-white text-sm mt-2">Izvēlētais datums: {selectedDate.toLocaleDateString("lv-LV")}</p>
                     <TimePicker time={time} setTime={setTime}/>
                     <ThemePicker theme={theme} setTheme={setTheme}/>
                     <BookBtn price={"10"} date={formattedDate} time={time} theme={theme} teacherId={personId} studentId={localStorage.getItem("studentId")}/>
