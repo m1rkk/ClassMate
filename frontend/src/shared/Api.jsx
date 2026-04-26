@@ -320,11 +320,45 @@ const studentSearch = async (searchTerm) =>{
         throw error;
     }
 }
-
+const getNotes = async (studentId, teacherId) => {
+    try {
+        const response = await api.get(`/note/${studentId}/${teacherId}/getNote`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+const postNote = async (text, date, teacherId, studentId) => {
+    try {
+        const response = await api.post(`/note/create`,{
+            Teksts: text,
+            Datums: date,
+            SkolotajaId: teacherId,
+            StudentuId: studentId,
+        },{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        console.log(response.data);
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
 export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getStudentLessonsWithFilter
     ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher,
-    getTeachersStudents, studentSearch,getTeachersLessons,getTeacherLessonsWithFilter,getTeacherLessonsCountToday,getTeacherLessonsCountThisWeek, bookLesson};
+    getTeachersStudents, studentSearch,getTeachersLessons,getTeacherLessonsWithFilter,getTeacherLessonsCountToday,getTeacherLessonsCountThisWeek, bookLesson,
+    getNotes, postNote};
 
