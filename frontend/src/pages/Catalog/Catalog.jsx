@@ -1,4 +1,4 @@
-import Threads from "@/components/ui/Threads";
+﻿import Threads from "@/components/ui/Threads";
 import DashboardButton from "@/shared/ui/DashboardButton";
 import TeachersOrStudentsContainer from "@/shared/ui/TeachersOrStudentsContainer";
 import GlassSurface from "@/components/ui/GlassSurface";
@@ -19,8 +19,7 @@ export default function Catalog() {
                     />
                     <section className={`w-full h-screen flex flex-col items-center justify-start gap-[10%] pt-4`}>
                         <div className={`flex flex-row items-center justify-between w-10/12`}>
-                            <p className={`text-lg w-1/4 text-white`}>Tavs personals panelis, šeit tu vari redzēt visas
-                                stundas kas tevi gaida un pārvaldīt tos</p>
+                            <p className={`text-lg w-1/4 text-white`}>Tavs personīgais panelis, šeit vari redzēt visas gaidāmās stundas un tās pārvaldīt.</p>
                             <DashboardButton role="student"/>
                         </div>
                         <div className={`flex flex-row items-center justify-center w-full h-full p-4`}>
@@ -39,8 +38,7 @@ export default function Catalog() {
                     />
                     <section className={`w-full h-screen flex flex-col items-center justify-start gap-[15%] pt-4`}>
                         <div className={`flex flex-row items-center justify-between w-10/12`}>
-                            <p className={`text-lg w-1/4 text-white`}>Tavs personals panelis, šeit tu vari redzēt visas
-                                stundas kas tevi gaida un pārvaldīt tos</p>
+                            <p className={`text-lg w-1/4 text-white`}>Tavs personīgais panelis, šeit vari redzēt visas gaidāmās stundas un tās pārvaldīt.</p>
                             <DashboardButton role="teacher"/>
                         </div>
                         <div className={`flex flex-row items-center justify-center w-full h-full p-4`}>
@@ -74,19 +72,19 @@ export default function Catalog() {
                             height={`18rem`}
                         >
                             <div className="h-full w-full flex flex-col items-center justify-center gap-6 px-6">
-                                <p className="text-white text-2xl font-semibold text-center">U are not logged in</p>
+                                <p className="text-white text-2xl font-semibold text-center">Tu neesi pieslēdzies</p>
                                 <div className="flex items-center justify-center gap-4">
                                     <Link
                                         to="/login"
                                         className="min-w-28 rounded-full border border-white px-6 py-2 text-center text-white transition hover:bg-white hover:text-black"
                                     >
-                                        Login
+                                        Pieslēgties
                                     </Link>
                                     <Link
                                         to="/register"
                                         className="min-w-28 rounded-full border border-white px-6 py-2 text-center text-white transition hover:bg-white hover:text-black"
                                     >
-                                        Register
+                                        Reģistrēties
                                     </Link>
                                 </div>
                             </div>

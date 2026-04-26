@@ -1,4 +1,4 @@
-import {getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getTeacherLessonsCountThisWeek,getTeacherLessonsCountToday} from "@/shared/Api";
+﻿import {getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getTeacherLessonsCountThisWeek,getTeacherLessonsCountToday} from "@/shared/Api";
 import {useEffect, useState} from "react";
 
 export default function LessonsCounter({timePeriod}) {
@@ -6,6 +6,7 @@ export default function LessonsCounter({timePeriod}) {
     const [lessonsCountToday, setLessonsCountToday] = useState(0);
     const [lessonsCountThisWeek, setLessonsCountThisWeek] = useState(0);
     const [error, setError] = useState("");
+
     useEffect(() => {
         let isMounted = true;
         if(localStorage.getItem("role") === "student") {
@@ -22,7 +23,7 @@ export default function LessonsCounter({timePeriod}) {
                     }
                 }catch (e) {
                     if (isMounted) {
-                        setError("Failed to load lessons count");
+                        setError("Neizdevās ielādēt stundu skaitu");
                     }
                 } finally {
                     if (isMounted) {
@@ -45,7 +46,7 @@ export default function LessonsCounter({timePeriod}) {
                     }
                 }catch (e) {
                     if (isMounted) {
-                        setError("Failed to load lessons count");
+                        setError("Neizdevās ielādēt stundu skaitu");
                     }
                 } finally {
                     if (isMounted) {
@@ -64,7 +65,7 @@ export default function LessonsCounter({timePeriod}) {
     if(timePeriod === "today"){
         return(
             <div className="flex flex-row items-center justify-center w-1/5 gap-[50%] pb-5 pt-5 bg-white rounded-2xl">
-                <p className={`text-3xl w-1/4`}>Lessons today</p>
+                <p className={`text-3xl w-1/4`}>Stundas šodien</p>
                 <div className={`text-6xl font-[Orbitron] min-w-18 flex justify-center`}>
                     {isLoading && (
                         <div className="h-12 w-16 rounded-md bg-[#2A2A2A] animate-pulse" />)}
@@ -77,7 +78,7 @@ export default function LessonsCounter({timePeriod}) {
     else {
         return(
             <div className="flex flex-row items-center justify-center w-1/5 gap-[40%] pb-6 pt-6 bg-white rounded-2xl">
-                <p className={`text-3xl  w-1/3`}>Lessons this week</p>
+                <p className={`text-3xl  w-1/3`}>Stundas šonedēļ</p>
                 <div className={`text-6xl font-[Orbitron] min-w-18 flex justify-center`}>
                     {isLoading && (
                         <div className="h-12 w-16 rounded-md bg-[#2A2A2A] animate-pulse" />)}

@@ -1,4 +1,4 @@
-import Dither from "@/components/ui/Dither";
+﻿import Dither from "@/components/ui/Dither";
 import GlassSurface from "@/components/ui/GlassSurface";
 import GlassInput from "@/shared/ui/GlassInput";
 import { Link } from "react-router-dom";
@@ -8,12 +8,12 @@ import latviaCities from "@/pages/RegisterPage/Cities";
 
 export default function RegisterPage() {
 
-    const [name, setName] = useState("");   // hook dla imja
-    const [surname, setSurname] = useState("");   // hook dla familii
-    const [city, setCity] = useState("");   // hook dla goroda
-    const [role, setRole] = useState("");   // hook dla roli
-    const [email, setEmail] = useState("");   // hook dla email
-    const [password, setPassword] = useState(""); // hook dla password
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [city, setCity] = useState("");
+    const [role, setRole] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     return(
         <div className={`w-full h-screen bg-black flex justify-between items-center`}>
@@ -31,12 +31,12 @@ export default function RegisterPage() {
 
                 <div className={`absolute top-0 w-2/3 h-full flex justify-center items-center gap-[3%] flex-col`}>
                     <div className={`flex items-center justify-between w-[45%] h-[6%]`}>
-                        <GlassInput placeholder={"name:"} height={'100%'} width={"50%"} onChange={(e) => setName(e.target.value)} value={name}/>
-                        <GlassInput placeholder={"surname:"} height={'100%'} onChange={(e) => setSurname(e.target.value)} value={surname}/>
+                        <GlassInput placeholder={"vārds:"} height={'100%'} width={"50%"} onChange={(e) => setName(e.target.value)} value={name}/>
+                        <GlassInput placeholder={"uzvārds:"} height={'100%'} onChange={(e) => setSurname(e.target.value)} value={surname}/>
                     </div>
 
-                    <GlassInput placeholder={"email:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
-                    <GlassInput placeholder={"password:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
+                    <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
+                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
 
                     <GlassSurface
                         saturation={1}
@@ -53,19 +53,19 @@ export default function RegisterPage() {
                         mixBlendMode="difference"
                         width={`45%`}
                         height={`6%`}>
-                        <select name="City:" id="citySelector" className={`bg-transparent w-full h-full text-white`} onChange={(e) => setCity(e.target.value)}>
+                        <select name="Pilsēta:" id="citySelector" className={`bg-transparent w-full h-full text-white`} onChange={(e) => setCity(e.target.value)}>
                             {
                                 latviaCities.map((city)=>(
                                     <option value={city} key={city} className={`text-black`} onChange={(e)=>setCity(e.target.value)}>{city}</option>
-                                )) //dobavlajiem vse goroda iz masiva
+                                ))
                             }
                         </select>
                     </GlassSurface>
 
                     <div className={`flex items-center justify-start gap-4 w-[45%]`}>
-                        <div><input type="radio" name={"role"}  value={`teacher`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="teacherRadio" className={`text-white`}>I'm a teacher</label></div>
-                        <div><input type="radio" name={"role"} value={`student`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="studentRadio" className={`text-white`}>I'm a student</label></div>
-                        <div className={`text-white`}>Have an account? <Link to={`/login`} className={`text-blue-700 font-black`}>Click</Link></div>
+                        <div><input type="radio" name={"role"}  value={`teacher`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="teacherRadio" className={`text-white`}>Esmu skolotājs/-a</label></div>
+                        <div><input type="radio" name={"role"} value={`student`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="studentRadio" className={`text-white`}>Esmu students/-e</label></div>
+                        <div className={`text-white`}>Jau ir konts? <Link to={`/login`} className={`text-blue-700 font-black`}>Spied šeit</Link></div>
                     </div>
 
                     <GlassSurface
@@ -83,7 +83,7 @@ export default function RegisterPage() {
                         mixBlendMode="difference"
                         width={`45%`}
                         height={`6%`}>
-                        <button className={`bg-transparent w-full h-full text-white`} onClick={()=>register(name,surname,email,city,password,role)}>Register</button>
+                        <button className={`bg-transparent w-full h-full text-white`} onClick={()=>register(name,surname,email,city,password,role)}>Reģistrēties</button>
                     </GlassSurface>
 
                 </div>
@@ -94,13 +94,12 @@ export default function RegisterPage() {
                     NEW WAY<br />TO<br />SCHEDULE
                 </h1>
                 <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-right">
-                    Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām. Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām..
+                    Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
                 </div>
                 <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-left">
                     Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
                 </div>
             </div>
-8
         </div>
     );
 }

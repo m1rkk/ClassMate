@@ -1,4 +1,4 @@
-export default function InfoContainer() {
+﻿export default function InfoContainer() {
     return (
         <div className="absolute w-[40%] h-1/3 bg-[#B6E2F6] flex items-center justify-around rounded-3xl top-[55%] left-[35%]">
             <p className="w-[70%] text-lg ml-[4%] text-[#638B9D] font-medium">

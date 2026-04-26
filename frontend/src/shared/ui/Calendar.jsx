@@ -1,10 +1,10 @@
-import DayComponent from "./DayComponent";
-
+﻿import DayComponent from "./DayComponent";
 
 export default function Calendar({month,setMonth,year,setYear,setDay, day}){
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+    const monthNames = ["Janvāris", "Februāris", "Marts", "Aprīlis", "Maijs", "Jūnijs",
+        "Jūlijs", "Augusts", "Septembris", "Oktobris", "Novembris", "Decembris"
     ];
+
     const goNextMonth = () => {
         const newMonthIndex = month + 1;
         if (newMonthIndex === monthNames.length) {
@@ -14,6 +14,7 @@ export default function Calendar({month,setMonth,year,setYear,setDay, day}){
             setMonth(newMonthIndex);
         }
     };
+
     const goPrevMonth = () => {
         const newMonthIndex = month - 1;
         if (newMonthIndex === -1) {
@@ -38,15 +39,14 @@ export default function Calendar({month,setMonth,year,setYear,setDay, day}){
             </div>
             <div className={`grid grid-cols-7 w-full h-full gap-1 place-items-center`}>
                 {[...Array(getDaysInMonth(year, month))].map((_, idx) => (
-                <DayComponent
-                    key={idx}
-                    dayNum={idx + 1}
-                    onClick={() => setDay(idx + 1)}
-                    selected={day === idx + 1}
-                />
-            ))}
+                    <DayComponent
+                        key={idx}
+                        dayNum={idx + 1}
+                        onClick={() => setDay(idx + 1)}
+                        selected={day === idx + 1}
+                    />
+                ))}
             </div>
         </div>
     )
-
 }
