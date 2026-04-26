@@ -81,9 +81,9 @@ class DataController extends Controller
         }
     }
 
-    public function getNotesByStudentId(Studenti $student)
+    public function getNotesByStudentAndTeacher(Studenti $student, Skolotajs $teacher)
     {
-        return $student->piezimes()->get();
+        return $student->piezimes()->where("SkolotajaId",$teacher->SkolotajaId)->get();
     }
 
     public function deleteNote(Pieraksts $note)
