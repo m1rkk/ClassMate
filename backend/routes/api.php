@@ -41,12 +41,12 @@ use App\Http\Controllers\Api\DataController;
         Route::get('appointments/day/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByDay'])->middleware('auth:sanctum');
         Route::get('appointments/inThreeDays/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByThreeDays'])->middleware('auth:sanctum');
 
-        Route::post('appointment', [DataController::class, 'makeAppointment'])->middleware('auth:sanctum');
+        Route::post('appointment/book', [DataController::class, 'makeAppointment'])->middleware('auth:sanctum');
         Route::delete('appointment/{appointment}/delete', [DataController::class, 'deleteAppointment'])->middleware('auth:sanctum');
 
 
         Route::post('note/create', [DataController::class, 'createNote'])->middleware('auth:sanctum');
-        Route::get('note/{student}/getNote', [DataController::class, 'getNotesByStudentId'])->middleware('auth:sanctum');
+        Route::get('note/{student}/{teacher}/getNote', [DataController::class, 'getNotesByStudentAndTeacher'])->middleware('auth:sanctum');
         Route::delete('note/{note}/deleteNote', [DataController::class, 'deleteNote'])->middleware('auth:sanctum');
 
 
