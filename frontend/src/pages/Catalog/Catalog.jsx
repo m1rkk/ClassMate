@@ -20,7 +20,7 @@ export default function Catalog() {
                     <section className={`w-full h-screen flex flex-col items-center justify-start gap-[10%] pt-4`}>
                         <div className={`flex flex-row items-center justify-between w-10/12`}>
                             <p className={`text-lg w-1/4 text-white`}>Tavs personīgais panelis, šeit vari redzēt visas gaidāmās stundas un tās pārvaldīt.</p>
-                            <DashboardButton role="student"/>
+                            <DashboardButton text={"Uz personīgo paneli"} goTo={"/dashboard"}/>
                         </div>
                         <div className={`flex flex-row items-center justify-center w-full h-full p-4`}>
                             <TeachersOrStudentsContainer/>
@@ -39,7 +39,7 @@ export default function Catalog() {
                     <section className={`w-full h-screen flex flex-col items-center justify-start gap-[15%] pt-4`}>
                         <div className={`flex flex-row items-center justify-between w-10/12`}>
                             <p className={`text-lg w-1/4 text-white`}>Tavs personīgais panelis, šeit vari redzēt visas gaidāmās stundas un tās pārvaldīt.</p>
-                            <DashboardButton role="teacher"/>
+                            <DashboardButton text={"Uz personīgo paneli"} goTo={"/dashboard"}/>
                         </div>
                         <div className={`flex flex-row items-center justify-center w-full h-full p-4`}>
                             <TeachersOrStudentsContainer/>
