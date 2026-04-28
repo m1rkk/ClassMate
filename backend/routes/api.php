@@ -41,6 +41,7 @@ use App\Http\Controllers\Api\DataController;
         Route::get('appointments/day/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByDay'])->middleware('auth:sanctum');
         Route::get('appointments/inThreeDays/{student}/byStudent', [DataController::class, 'getStudentAppointmentsByThreeDays'])->middleware('auth:sanctum');
 
+        Route::put('appointment/{appointment}/update', [DataController::class, 'updateAppointment'])->middleware('auth:sanctum');
         Route::post('appointment/book', [DataController::class, 'makeAppointment'])->middleware('auth:sanctum');
         Route::delete('appointment/{appointment}/delete', [DataController::class, 'deleteAppointment'])->middleware('auth:sanctum');
 
