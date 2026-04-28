@@ -2,8 +2,8 @@ export default function DashboardFilter({period, onClick, width, active}) {
     return (
         <div
             onClick={onClick}
-            className={`flex flex-row items-center justify-center w-[${width}] pt-1 pb-1 pr-4 pl-4 rounded-3xl cursor-pointer ${
-                active ? "bg-gray-300" : "bg-white"
+            className={`flex flex-row items-center justify-center w-[${width}] pt-3 pb-3 pr-5 pl-5 rounded-full cursor-pointer text-lg ${
+                active ? "bg-white/20" : "bg-white"
             }`}
         >
             {period}

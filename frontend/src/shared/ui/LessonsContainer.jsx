@@ -7,6 +7,7 @@ import TimePicker from "@/shared/ui/TimePicker";
 import ThemePicker from "@/shared/ui/ThemePicker";
 import BookBtn from "@/shared/ui/BookBtn";
 import * as React from "react";
+import CloseBtn from "@/shared/ui/CloseBtn";
 
 
 export default function LessonsContainer({onLessonUpdate}) {
@@ -224,6 +225,7 @@ export default function LessonsContainer({onLessonUpdate}) {
                 ))}
                 {isUpdateExpanded && (
                     <div className={`w-[80%] h-full flex flex-col items-center justify-start mt-8 gap-4`}>
+                        <CloseBtn OnClick={() => setIsUpdateExpanded(false)}/>
                         <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
                         <p className="text-white text-sm mt-2">Izvēlētais datums: {selectedDate.toLocaleDateString("lv-LV")}</p>
                         <TimePicker time={time} setTime={setTime}/>
@@ -248,7 +250,7 @@ export default function LessonsContainer({onLessonUpdate}) {
                 <DashboardFilter
                     period="mēnesis"
                     onClick={() => handleFilterChange('month')}
-                    width="80%"
+                    width="90%"
                     active={filter === 'month'}
                 />
                 <div className={`flex flex-row items-center justify-center w-full gap-[2%]`}>
