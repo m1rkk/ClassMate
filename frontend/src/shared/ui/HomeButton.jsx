@@ -1,11 +1,11 @@
-import homeIcon from "@/assets/imgs/material-symbols_home-outline-rounded.png"
+import homeIcon from "@/assets/imgs/homeIcon.png"
 
 
 export default function HomeButton(){
     return (
         <button className="flex items-center justify-center w-3/27 bg-white rounded-2xl
         h-3/14 left-1/70 absolute">
-            <img src="../../assets/imgs/material-symbols_home-outline-rounded.png"
+            <img src={homeIcon}
                  alt="" className="w-1/4"/></button>
     )
 }
