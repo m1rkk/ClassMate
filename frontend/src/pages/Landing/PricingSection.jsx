@@ -1,4 +1,5 @@
 import PricingCard from "@/pages/Landing/PricingCard";
+import {useNavigate} from "react-router-dom";
 
 export default function PricingSection() {
     const freeFeatures = [

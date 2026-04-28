@@ -1,8 +1,10 @@
 import Threads from "@/components/ui/Threads";
 import GlassSurface from "@/components/ui/GlassSurface";
 import TeacherPlateElement from "@/shared/ui/TeacherPlateElement";
+import {useNavigate} from "react-router-dom";
 
 export default function TutorSection() {
+    const navigate = useNavigate();
     return(
 
         <section className={`relative w-full h-screen overflow-hidden`}>
@@ -49,9 +51,9 @@ export default function TutorSection() {
                                 mixBlendMode="difference"
                                 width={`40%`}
                                 height={`100%`}>
-                                <button className={`bg-transparent text-white py-2 px-4 rounded w-full h-full text-center`}>Parskatīt skolotajus</button>
+                                <button className={`bg-transparent text-white py-2 px-4 rounded w-full h-full text-center`} onClick={() => navigate('/login')}>Parskatīt skolotajus</button>
                             </GlassSurface>
-                            <button className={`bg-white text-black py-2 px-4 rounded-xl w-[60%] h-[80%]`}>Vel nav students?</button>
+                            <button className={`bg-white text-black py-2 px-4 rounded-xl w-[60%] h-[80%]`} onClick={() => navigate('/register')}>Vel nav students?</button>
                         </div>
                     </div>
                     <div className={`flex flex-col items-end justify-center w-[60%] h-[60%] gap-6`}>

@@ -94,10 +94,10 @@ export default function RegisterPage() {
                     NEW WAY<br />TO<br />SCHEDULE
                 </h1>
                 <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-right">
-                    Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
+                    Kļūsti par skolotāju, paplašini savu auditoriju, organizē nodarbības un pelni ar savām prasmēm vienā platformā.
                 </div>
                 <div className="w-full text-white font-light flex items-center justify-center text-[clamp(0.5rem,0.9vw,1rem)] text-left">
-                    Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
+                    Atrodi sev piemērotāko skolotāju, rezervē nodarbības ērtā laikā un attīsti savas prasmes ar individuālu pieeju vienuviet.
                 </div>
             </div>
         </div>

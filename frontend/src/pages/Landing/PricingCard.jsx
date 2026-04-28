@@ -1,6 +1,8 @@
 import GlassSurface from "@/components/ui/GlassSurface";
+import {useNavigate} from "react-router-dom";
 
 export default function PricingCard({price, planName, features}) {
+    const navigate = useNavigate();
     return(
         <GlassSurface
             displace={1}
@@ -24,7 +26,7 @@ export default function PricingCard({price, planName, features}) {
                         <li key={index}>{feature}</li>
                     ))}
                 </ul>
-                <button className={`bg-white text-black rounded-2xl py-4 text-xl w-[60%] mt-[10%]`}>
+                <button className={`bg-white text-black rounded-2xl py-4 text-xl w-[60%] mt-[10%]`} onClick={() => navigate('/register')}>
                     Pieteikties
                 </button>
             </div>
