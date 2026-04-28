@@ -17,7 +17,7 @@ export default function AboutSection() {
                                 <button className="bg-white rounded-xl w-[20%] p-3">RegistrД“ties</button>
                             </div>
                             <p className="text-white text-lg w-[27%] text-right font-light">
-                                Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
+                                Attīsti savas prasmes ātrāk ar labākajiem skolotājiem. Tā darbojas līdzīgi kā Airbnb, bet ir paredzēta nodarbību rezervēšanai. Rezervē nodarbības, pārvaldi savu laiku un seko progresam vienuviet.
                             </p>
                         </div>
                         <div className="w-[95%] h-[23%] flex flex-row items-center justify-between gap-4">
@@ -42,7 +42,8 @@ export default function AboutSection() {
                                             or what
                                         </h1>
                                         <p className="text-white text-sm w-[90%] text-left font-thin">
-                                            Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
+                                            Mūsu platforma savieno skolēnus ar pieredzējušiem skolotājiem.
+                                            Viegli atrodi pasniedzēju, rezervē nodarbības un pārvaldi visu vienā vietā.
                                         </p>
                                     </div>
                                     <img src={CalendarImg} alt="" className="w-[32%] h-[20vh] " />
@@ -50,17 +51,17 @@ export default function AboutSection() {
                             </GlassSurface>
                             <div className={`w-[30%] h-full flex flex-row items-center justify-end gap-[15%] p-2`}>
                                 <div className="w-[35%] h-[90%] flex flex-col items-start justify-around gap-4 bg-white rounded-xl p-6">
-                                    <p className={`text-3xl`}>1000+ <br/> tutors</p>
-                                    <p className={`text-sm text-left w-full`}>Tā ir mājaslapa, kas darbojas pēc līdzīga principa kā</p>
+                                    <p className={`text-3xl`}>1000+ <br/> skolotājus</p>
+                                    <p className={`text-sm text-left w-full`}>Plaša izvēle dažādās mācību jomās.</p>
                                 </div>
                                 <div className="w-[35%] h-[90%] flex flex-col items-start justify-around gap-4 bg-white rounded-xl p-6">
-                                    <p className={`text-3xl`}>1000+ <br/> tutors</p>
-                                    <p className={`text-sm text-left w-full`}>Tā ir mājaslapa, kas darbojas pēc līdzīga principa kā</p>
+                                    <p className={`text-3xl`}>1000+ <br/> studentus</p>
+                                    <p className={`text-sm text-left w-full`}>Aktīva kopiena, kas mācās un attīstās.</p>
                                 </div>
                             </div>
                         </div>
                         <div className={`w-[95%] h-[35%] flex flex-row items-center justify-between gap-4 p-2`}>
-                            <p className={`text-xl text-white w-[20%]`}>Tā ir mājaslapa, kas darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privājam klientam</p>
+                            <p className={`text-xl text-white w-[20%]`}>Mūsu platforma piedāvā plašu skolotāju izvēli dažādās jomās — atrodi sev piemērotāko.</p>
                             <div className={`w-[70%] h-full flex flex-row items-center justify-end gap-[7%]`}>
                                 <AboutPlateElement text="1000+ tutors" img={BookImg}/>
                                 <AboutPlateElement text="growing auditory" img={PeopleImg}/>

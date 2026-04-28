@@ -31,7 +31,9 @@ export default function TutorSection() {
                             width={`100%`}
                             height={`100%`}>
                             <p className={`text-white text-xl w-[90%] text-left font-thin`}>
-                                Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām. Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām..
+                                Mūsu platforma palīdz atrast piemērotāko skolotāju tieši tavām vajadzībām.
+                                Rezervē nodarbības, pārvaldi savu grafiku un seko līdzi progresam vienuviet.
+                                Neatkarīgi no tā, vai mācies eksāmeniem vai attīsti jaunas prasmes — viss sākas šeit.
                             </p>
                         </GlassSurface>
                         <div className={`flex flex-row items-center justify-start w-full h-[20%] gap-4`}>
