@@ -1,8 +1,11 @@
 ﻿import NavBar from "@/shared/ui/NavBar";
 import Dither from "@/components/ui/Dither";
 import GlassSurface from "@/components/ui/GlassSurface";
+import {Navigate, useNavigate} from "react-router-dom";
+
 
 export default function HeroSection(props) {
+    const navigate = useNavigate();
     return (
         <div className="w-full h-full">
             <Dither waveColor={[0.5,0.5,0.5]}
@@ -34,9 +37,9 @@ export default function HeroSection(props) {
                         mixBlendMode="difference"
                         width={`40%`}
                         height={`100%`}>
-                        <span className="text-[clamp(0.4rem,1vw,1.3rem)] font-light flex items-center justify-center text-white">Pieslēgties</span>
+                        <span className="text-[clamp(0.4rem,1vw,1.3rem)] font-light flex items-center justify-center text-white" onClick={() => navigate('/login')}>Pieslēgties</span>
                     </GlassSurface>
-                    <button className={`bg-black pl-9 pr-9 rounded-[100px] h-full text-white text-[clamp(0.4rem,1vw,1.3rem)] font-extralight`}>Reģistrēties</button>
+                    <button className={`bg-black pl-9 pr-9 rounded-[100px] h-full text-white text-[clamp(0.4rem,1vw,1.3rem)] font-extralight`} onClick={() => navigate('/register')}>Reģistrēties</button>
                 </div>
                 <div className={`w-[40%] h-[60%] flex flex-col items-start justify-center`}>
                     <GlassSurface

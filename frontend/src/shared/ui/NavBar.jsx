@@ -3,7 +3,9 @@ import infoIcon from "@/assets/imgs/infoIcon.png";
 import homeIcon from "@/assets/imgs/homeIcon.png";
 import contactIcon from "@/assets/imgs/contactIcon.png";
 import GlassSurface from "@/components/ui/GlassSurface";
+import {useNavigate} from "react-router-dom";
 export default function NavBar() {
+    const navigate = useNavigate();
     return (
         <nav className="flex items-center justify-center w-1/5 h-[15%] mt-[1%] mr-[1%]">
             <GlassSurface
@@ -22,9 +24,9 @@ export default function NavBar() {
             width={`100%`}
             height={`100%`}>
                 <ul className="list-none flex items-center justify-evenly rounded-2xl w-100">
-                    <NavElement path={infoIcon}/>
-                    <NavElement path={homeIcon}/>
-                    <NavElement path={contactIcon}/>
+                    <NavElement path={infoIcon} onClick={() => navigate('/')}/>
+                    <NavElement path={homeIcon} onClick={() => navigate('/dashboard')}/>
+                    <NavElement path={contactIcon} onClick={() => navigate('/catalog')}/>
                 </ul>
             </GlassSurface>
         </nav>

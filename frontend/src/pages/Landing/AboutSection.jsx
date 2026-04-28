@@ -6,7 +6,9 @@ import AboutPlateElement from "@/shared/ui/AboutPlateElement";
 import PeopleImg from "@/assets/imgs/peopleImg.png";
 import UxImg from "@/assets/imgs/uxImg.png";
 import PriceImg from "@/assets/imgs/priceImg.png"
+import {useNavigate} from "react-router-dom";
 export default function AboutSection() {
+    const navigate = useNavigate();
     return (
         <section className="w-full h-screen overflow-hidden pt-4 flex flex-col items-center justify-center">
             <div className="relative z-10 flex h-[80%] w-[85%] items-center justify-center backdrop-blur-md bg-white/4 rounded-2xl">
@@ -14,7 +16,7 @@ export default function AboutSection() {
                         <div className="w-[95%] h-[30%] flex flex-row items-center justify-between gap-4">
                             <div className="w-[40%] h-full flex flex-col items-start justify-center gap-8">
                                 <p className="text-7xl font-bold font-[Orbitron] text-white">We grow - you grow</p>
-                                <button className="bg-white rounded-xl w-[20%] p-3">RegistrД“ties</button>
+                                <button className="bg-white rounded-xl w-[20%] p-3" onClick={() => navigate('/register')}>Registrēties</button>
                             </div>
                             <p className="text-white text-lg w-[27%] text-right font-light">
                                 Attīsti savas prasmes ātrāk ar labākajiem skolotājiem. Tā darbojas līdzīgi kā Airbnb, bet ir paredzēta nodarbību rezervēšanai. Rezervē nodarbības, pārvaldi savu laiku un seko progresam vienuviet.
