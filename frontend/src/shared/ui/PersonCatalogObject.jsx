@@ -9,6 +9,7 @@ import ThemePicker from "@/shared/ui/ThemePicker";
 import BookBtn from "@/shared/ui/BookBtn";
 import StudentNotes from "@/shared/ui/StudentNotes";
 import MakeNoteBtn from "@/shared/ui/MakeNoteBtn";
+import CloseBtn from "@/shared/ui/CloseBtn";
 
 export default function PersonCatalogObject({
     personId,
@@ -36,6 +37,9 @@ export default function PersonCatalogObject({
     const [addingExpand, setAddingExpand] = useState(false);
     const [noteText, setNoteText] = useState("");
 
+    const closeExpand = () => {
+        onView?.(null);
+    }
     return (
         <GlassSurface
             displace={1}
@@ -89,16 +93,18 @@ export default function PersonCatalogObject({
                         </div>
                     </div>
                     <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-4`}>
-                    <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
-                    <p className="text-white text-sm mt-2">Izvēlētais datums: {selectedDate.toLocaleDateString("lv-LV")}</p>
-                    <TimePicker time={time} setTime={setTime}/>
-                    <ThemePicker theme={theme} setTheme={setTheme}/>
-                    <BookBtn price={"10"} date={formattedDate} time={time} theme={theme} teacherId={personId} studentId={localStorage.getItem("studentId")}/>
+                        <CloseBtn OnClick={() => closeExpand()}/>
+                        <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
+                        <p className="text-white text-sm mt-2">Izvēlētais datums: {selectedDate.toLocaleDateString("lv-LV")}</p>
+                        <TimePicker time={time} setTime={setTime}/>
+                        <ThemePicker theme={theme} setTheme={setTheme}/>
+                        <BookBtn price={"10"} date={formattedDate} time={time} theme={theme} teacherId={personId} studentId={localStorage.getItem("studentId")}/>
                     </div>
                 </div>
             )}
             {isExpanded && localStorage.getItem("role") === "teacher" && (
                 <div className={`w-full h-full flex flex-col items-center justify-content-around pt-2 pr-2`}>
+                    <CloseBtn OnClick={() => closeExpand()}/>
                     <div className="w-full flex flex-row items-center justify-end gap-2">
                         <div className="flex flex-col items-end justify-center text-right w-[10%]">
                             <p className="text-white text-2xl">{name} {surname}</p>
@@ -107,13 +113,14 @@ export default function PersonCatalogObject({
                         <img src={profilePic} alt="" className="w-[6%]" />
                     </div>
                     {!addingExpand && (
-                        <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-4`}>
+                        <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-10`}>
                             <StudentNotes studentId={personId}/>
                             <MakeNoteBtn addingExpand={addingExpand} setAddingExpand={setAddingExpand} text={""} date={""} teacherId={localStorage.getItem("teacherId")} studentId={personId} />
                         </div>
                     )}
                     {addingExpand && (
                         <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-4`}>
+                            <CloseBtn OnClick={() => setAddingExpand(false)}/>
                             <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
                             <input type={"text"} value={noteText} className={`bg-transparent border-2 border-white rounded-lg text-white w-full h-15 p-1`} onChange={(e) => setNoteText(e.target.value)}/>
                             <MakeNoteBtn addingExpand={addingExpand} setAddingExpand={setAddingExpand} text={noteText} date={selectedDate} teacherId={localStorage.getItem("teacherId")} studentId={personId} />
