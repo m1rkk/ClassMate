@@ -55,7 +55,7 @@ export default function HeroSection(props) {
                         width={`100%`}
                         height={`23%`}>
                         <div className="w-full h-full min-h-[23%] text-white font-light flex items-center justify-center p-4 text-[clamp(0.5rem,1vw,1.3rem)]">
-                            Mūsu platforma darbojas pēc līdzīga principa kā Airbnb, tikai paredzēta privāto skolotāju un instruktoru rezervācijām.
+                            Platforma, kas ļauj ērti atrast un rezervēt privātos skolotājus, sazināties ar tiem un pārvaldīt savu mācību procesu vienuviet.
                         </div>
                     </GlassSurface>
                     <h1 className="text-white text-[clamp(2vw,6vw,8rem)] font-extrabold w-full font-[Orbitron]">
