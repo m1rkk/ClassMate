@@ -233,4 +233,15 @@ class DataController extends Controller
         );
     }
 
+    public function updateAppointment(Pieraksts $appointment)
+    {
+        $data = request()->validate([
+            "Tema" => "sometimes|string|max:100",
+            "Datums" => "sometimes|date",
+            "Laiks" => "sometimes|date_format:H:i",
+        ]);
+        $appointment->update($data);
+        return response()->json($appointment);
+    }
+
 }
