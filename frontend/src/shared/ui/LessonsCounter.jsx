@@ -1,7 +1,7 @@
 ﻿import {getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getTeacherLessonsCountThisWeek,getTeacherLessonsCountToday} from "@/shared/Api";
 import {useEffect, useState} from "react";
 
-export default function LessonsCounter({timePeriod}) {
+export default function LessonsCounter({timePeriod, refreshTrigger}) {
     const [isLoading, setIsLoading] = useState(true);
     const [lessonsCountToday, setLessonsCountToday] = useState(0);
     const [lessonsCountThisWeek, setLessonsCountThisWeek] = useState(0);
@@ -60,7 +60,7 @@ export default function LessonsCounter({timePeriod}) {
         return () => {
             isMounted = false;
         }
-    }, []);
+    }, [refreshTrigger]);
 
     if(timePeriod === "today"){
         return(

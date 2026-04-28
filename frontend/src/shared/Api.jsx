@@ -354,11 +354,29 @@ const postNote = async (text, date, teacherId, studentId) => {
         throw error;
     }
 }
+const updateLesson = async (noteId, theme, date, time) => {
+    try {
+        const response = await api.put(`appointment/${noteId}/update`,{
+            Tema: theme,
+            Datums: date,
+            Laiks: time,
+        },{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
 export { login, register, me,
     getStudentLessons, getStudentByPerson, deleteLesson,
     getStudentLessonsCountToday,getStudentLessonsCountThisWeek,getStudentLessonsWithFilter
     ,getRoleByPerson, deletePerson, getTeacherByPerson, getAllTeachers, searchForTeacher,
     getTeachersStudents, studentSearch,getTeachersLessons,getTeacherLessonsWithFilter,getTeacherLessonsCountToday,getTeacherLessonsCountThisWeek, bookLesson,
-    getNotes, postNote};
+    getNotes, postNote, updateLesson};
 

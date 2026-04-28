@@ -5,10 +5,12 @@ import LessonsCounter from "@/shared/ui/LessonsCounter";
 import Threads from "@/components/ui/Threads";
 import LessonsContainer from "@/shared/ui/LessonsContainer";
 import {Link} from "react-router-dom";
+import {useState} from "react";
 
 export default function Dashboard() {
     const userId = localStorage.getItem("userId");
     const isLoggedIn = Boolean(userId);
+    const [counterRefresh, setCounterRefresh] = useState(0);
 
     if (!isLoggedIn) {
         return (
@@ -71,8 +73,8 @@ export default function Dashboard() {
                 </div>
                 <div className={`flex flex-row items-center justify-between w-10/12`}>
                     <ProfileComponent/>
-                    <LessonsCounter timePeriod={"today"}/>
-                    <LessonsCounter timePeriod={"week"}/>
+                    <LessonsCounter timePeriod={"today"} refreshTrigger={counterRefresh}/>
+                    <LessonsCounter timePeriod={"week"} refreshTrigger={counterRefresh}/>
                 </div>
                 <GlassSurface
                     displace={1}
@@ -86,7 +88,7 @@ export default function Dashboard() {
                     mixBlendMode="difference"
                     width={`86%`}
                     height={`50%`}
-                > <LessonsContainer/>
+                > <LessonsContainer onLessonUpdate={() => setCounterRefresh(prev => prev + 1)}/>
                 </GlassSurface>
             </section>
         </div>
