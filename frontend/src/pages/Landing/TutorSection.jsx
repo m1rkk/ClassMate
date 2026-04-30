@@ -7,7 +7,7 @@ export default function TutorSection() {
     const navigate = useNavigate();
     return(
 
-        <section className={`relative w-full min-h-screen overflow-hidden`}>
+        <section className={`relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center`}>
             <Threads
                 amplitude={3}
                 distance={0}
