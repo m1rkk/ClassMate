@@ -12,10 +12,11 @@ export default function PricingCard({price, planName, features}) {
             blueOffset={20}
             brightness={50}
             opacity={50}
-            backgroundOpacity={0.001}
+            backgroundOpacity={0.05}
             mixBlendMode="difference"
-            width={`20%`}
-            height={`95%`}>
+            width={`100%`}
+            height={`auto`}
+            className="md:w-[20%]! md:h-[95%]! min-h-125">
             <div className={`w-full h-full flex flex-col items-center justify-start gap-[5%] p-4`}>
                 <div className={`w-full h-[20%] flex flex-col items-start justify-center gap-4`}>
                     <p className={`text-4xl text-white/50`}>{price}</p>
