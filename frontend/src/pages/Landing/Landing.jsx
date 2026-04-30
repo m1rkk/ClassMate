@@ -3,13 +3,14 @@ import HeroSection from "./HeroSection";
 import AboutSection from "@/pages/Landing/AboutSection";
 import TutorSection from "@/pages/Landing/TutorSection";
 import PricingSection from "@/pages/Landing/PricingSection";
+
 export default function Landing() {
     return (
-        <div className="flex flex-col items-center justify-center h-full">
-        <HeroSection />
-        <AboutSection />
-        <TutorSection />
-        <PricingSection />
+        <div className="flex min-h-screen w-full flex-col items-stretch justify-start overflow-x-hidden">
+            <HeroSection />
+            <AboutSection />
+            <TutorSection />
+            <PricingSection />
         </div>
     );
 }

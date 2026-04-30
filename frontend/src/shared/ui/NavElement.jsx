@@ -4,8 +4,8 @@ export default function NavElement({path, onClick}) {
     }
 
     return (
-        <li className="h-full p-4">
-            <img src={path} alt="" className="2xl:w-7 xl:w-5 m:w-4 sm:w-3 h-full" onClick={onClick}/>
+        <li className="flex h-full items-center justify-center p-2 sm:p-3">
+            <img src={path} alt="" className="h-auto w-4 cursor-pointer object-contain sm:w-5 xl:w-6" onClick={onClick}/>
         </li>
     )
 }

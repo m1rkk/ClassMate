@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 export default function NavBar() {
     const navigate = useNavigate();
     return (
-        <nav className="flex items-center justify-center w-1/5 h-[15%] mt-[1%] mr-[1%]">
+        <nav className="flex h-14 w-full max-w-[15rem] items-center justify-center sm:h-16 sm:max-w-[18rem] lg:h-[100%] lg:w-[20%] lg:min-w-[16rem] lg:max-w-[20rem]">
             <GlassSurface
                 saturation={1}
                 backgroundOpacity={0}
@@ -23,7 +23,7 @@ export default function NavBar() {
                 mixBlendMode="difference"
             width={`100%`}
             height={`100%`}>
-                <ul className="list-none flex items-center justify-evenly rounded-2xl w-100">
+                <ul className="flex h-full w-full list-none items-center justify-evenly rounded-2xl">
                     <NavElement path={infoIcon} onClick={() => navigate('/')}/>
                     <NavElement path={homeIcon} onClick={() => navigate('/dashboard')}/>
                     <NavElement path={contactIcon} onClick={() => navigate('/catalog')}/>
