@@ -6,7 +6,7 @@ import PricingSection from "@/pages/Landing/PricingSection";
 
 export default function Landing() {
     return (
-        <div className="flex min-h-screen w-full flex-col items-stretch justify-start overflow-x-hidden">
+        <div className="flex min-h-screen w-full flex-col items-stretch justify-start overflow-x-hidden gap-10">
             <HeroSection />
             <AboutSection />
             <TutorSection />
