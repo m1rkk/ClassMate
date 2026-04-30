@@ -6,7 +6,8 @@ export default function GlassInput(
         width = "45%",
         height = "6%",
     onChange,
-    value}) {
+    value,
+    className}) {
     return(
     <GlassSurface
         displace={1} //blur
@@ -19,7 +20,8 @@ export default function GlassInput(
         backgroundOpacity={0.01}
         mixBlendMode="difference"
         width={width}
-        height={height}>
+        height={height}
+        className={className}>
         <input value={value} onChange={onChange} type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-lg`}/>
     </GlassSurface>
     )
