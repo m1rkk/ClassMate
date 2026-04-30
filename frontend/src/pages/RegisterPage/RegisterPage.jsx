@@ -16,8 +16,8 @@ export default function RegisterPage() {
     const [password, setPassword] = useState("");
 
     return(
-        <div className={`w-full h-screen bg-black flex justify-between items-center`}>
-            <div className={`w-2/3 h-full`}>
+        <div className={`relative w-full min-h-screen bg-black flex flex-col md:h-screen md:flex-row md:justify-between md:items-center`}>
+            <div className={`relative w-full min-h-screen md:w-2/3 md:h-full`}>
                 <Dither
                         waveColor={[0.5,0.5,0.5]}
                         disableAnimation={false}
@@ -29,14 +29,14 @@ export default function RegisterPage() {
                         waveSpeed={0.03}>
                 </Dither>
 
-                <div className={`absolute top-0 w-2/3 h-full flex justify-center items-center gap-[3%] flex-col`}>
-                    <div className={`flex items-center justify-between w-[45%] h-[6%]`}>
-                        <GlassInput placeholder={"vārds:"} height={'100%'} width={"50%"} onChange={(e) => setName(e.target.value)} value={name}/>
-                        <GlassInput placeholder={"uzvārds:"} height={'100%'} onChange={(e) => setSurname(e.target.value)} value={surname}/>
+                <div className={`absolute top-0 w-full h-full flex justify-center items-center gap-[3%] flex-col px-4`}>
+                    <div className={`flex flex-col md:flex-row items-center justify-between h-[13%] w-[90%] md:w-[45%] md:h-[6%] gap-[3%] md:gap-0`}>
+                        <GlassInput placeholder={"vārds:"} height={'100%'} width={"100%"} onChange={(e) => setName(e.target.value)} value={name} className="md:!w-[48%] md:!h-full"/>
+                        <GlassInput placeholder={"uzvārds:"} height={'100%'} width={"100%"} onChange={(e) => setSurname(e.target.value)} value={surname} className="md:!w-[48%] md:!h-full"/>
                     </div>
 
-                    <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
-                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
+                    <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email} width="90%" className="md:!w-[45%]"/>
+                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password} width="90%" className="md:!w-[45%]"/>
 
                     <GlassSurface
                         saturation={1}
@@ -51,8 +51,9 @@ export default function RegisterPage() {
                         greenOffset={0}
                         blueOffset={0}
                         mixBlendMode="difference"
-                        width={`45%`}
-                        height={`6%`}>
+                        width={`90%`}
+                        height={`6%`}
+                        className="md:!w-[45%]">
                         <select name="Pilsēta:" id="citySelector" className={`bg-transparent w-full h-full text-white`} onChange={(e) => setCity(e.target.value)}>
                             {
                                 latviaCities.map((city)=>(
@@ -62,7 +63,7 @@ export default function RegisterPage() {
                         </select>
                     </GlassSurface>
 
-                    <div className={`flex items-center justify-start gap-4 w-[45%]`}>
+                    <div className={`flex flex-col md:flex-row items-start md:items-center justify-start gap-4 w-[90%] md:w-[45%]`}>
                         <div><input type="radio" name={"role"}  value={`teacher`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="teacherRadio" className={`text-white`}>Esmu skolotājs/-a</label></div>
                         <div><input type="radio" name={"role"} value={`student`} onChange={(e)=>setRole(e.target.value)}/> <label htmlFor="studentRadio" className={`text-white`}>Esmu students/-e</label></div>
                         <div className={`text-white`}>Jau ir konts? <Link to={`/login`} className={`text-blue-700 font-black`}>Spied šeit</Link></div>
@@ -81,15 +82,16 @@ export default function RegisterPage() {
                         greenOffset={0}
                         blueOffset={0}
                         mixBlendMode="difference"
-                        width={`45%`}
-                        height={`6%`}>
+                        width={`90%`}
+                        height={`6%`}
+                        className="md:!w-[45%]">
                         <button className={`bg-transparent w-full h-full text-white`} onClick={()=>register(name,surname,email,city,password,role)}>Reģistrēties</button>
                     </GlassSurface>
 
                 </div>
             </div>
 
-            <div className={`w-1/3 h-full bg-black flex flex-col justify-around items-start`}>
+            <div className={`hidden w-1/3 h-full bg-black md:flex flex-col justify-around items-start`}>
                 <h1 className="text-white text-[clamp(1.8vw,5.5vw,7.8rem)] font-extrabold font-[Orbitron] rotate-90 ml-[-20%] mt-[10%]">
                     NEW WAY<br />TO<br />SCHEDULE
                 </h1>

@@ -69,29 +69,27 @@ export default function LoginPage() {
                     waveSpeed={0.03}>
                 </Dither>
 
-                <div className={`absolute top-0 w-full h-full flex justify-center items-center gap-[3%] flex-col`}>
-                    <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email}/>
-                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password}/>
+                <div className={`absolute top-0 w-full h-full flex justify-center items-center gap-[3%] flex-col px-4`}>
+                    <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email} width="90%" className="md:!w-[45%]"/>
+                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password} width="90%" className="md:!w-[45%]"/>
 
-                    <div className={`flex items-center justify-start gap-4 w-[45%]`}>
+                    <div className={`flex items-center justify-start gap-4 w-[90%] md:w-[45%]`}>
                         <div className={`text-white`}>Nav konta? <Link to={`/register`} className={`text-blue-700 font-black`}>Spied šeit</Link></div>
                     </div>
 
                     <GlassSurface
-                        saturation={1}
-                        backgroundOpacity={0.1}
-                        borderWidth={0.08}
-                        brightness={45}
-                        opacity={0.85}
-                        blur={4}
-                        displace={0.6}
-                        distortionScale={30}
-                        redOffset={0}
-                        greenOffset={0}
-                        blueOffset={0}
-                        mixBlendMode="normal"
-                        width={`45%`}
-                        height={`6%`}>
+                        displace={1} //blur
+                        distortionScale={150} //angle
+                        redOffset={30}
+                        greenOffset={10}
+                        blueOffset={20}
+                        brightness={50}
+                        opacity={50}
+                        backgroundOpacity={0.01}
+                        mixBlendMode="difference"
+                        width={`90%`}
+                        height={`6%`}
+                        className="md:!w-[45%]">
                         <button className={`bg-transparent w-full h-full text-white text-lg disabled:opacity-60 disabled:cursor-not-allowed`}
                                 disabled={isLoading}
                                 onClick={handleLogin}>Pieslēgties</button>
