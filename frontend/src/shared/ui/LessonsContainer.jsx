@@ -193,8 +193,8 @@ export default function LessonsContainer({onLessonUpdate}) {
     }
 
     return(
-        <div className={`flex flex-row items-center justify-around w-full h-full p-4`}>
-            <div className={`flex flex-col items-start justify-start gap-[2%] w-[70%] h-full overflow-y-scroll`}>
+        <div className="flex h-full w-full flex-col gap-4 p-3 sm:p-4 xl:flex-row xl:items-start xl:justify-around">
+            <div className="order-2 flex min-h-0 w-full flex-1 flex-col items-start justify-start gap-3 overflow-y-auto pr-1 xl:order-1 xl:h-full xl:w-[70%] xl:flex-none xl:gap-[2%]">
                 {isLoading && (
                     <div className="w-full flex flex-col gap-3">
                         {[...Array(4)].map((_, idx) => (
@@ -224,14 +224,14 @@ export default function LessonsContainer({onLessonUpdate}) {
                     />
                 ))}
                 {isUpdateExpanded && (
-                    <div className={`w-[80%] h-full flex flex-col items-center justify-start mt-8 gap-4`}>
+                    <div className="relative mt-8 flex h-full w-full flex-col items-center justify-start gap-4 xl:w-[80%]">
                         <CloseBtn OnClick={() => setIsUpdateExpanded(false)}/>
                         <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
-                        <p className="text-white text-sm mt-2">Izvēlētais datums: {selectedDate.toLocaleDateString("lv-LV")}</p>
+                        <p className="mt-2 text-center text-sm text-white">Izvēlētais datums: {selectedDate.toLocaleDateString("lv-LV")}</p>
                         <TimePicker time={time} setTime={setTime}/>
                         <ThemePicker theme={theme} setTheme={setTheme}/>
                         <button
-                            className={`w-[50%] bg-white rounded-lg hover:bg-gray-200 pt-2 pb-2 text-lg flex items-center justify-center ${isUpdating ? 'cursor-not-allowed opacity-70' : ''}`}
+                            className={`flex w-full items-center justify-center rounded-lg bg-white pt-2 pb-2 text-base hover:bg-gray-200 sm:w-[60%] sm:text-lg xl:w-[50%] ${isUpdating ? 'cursor-not-allowed opacity-70' : ''}`}
                             onClick={() => handleUpdate(lessonId, theme, formattedDate, time)}
                             disabled={isUpdating}
                         >
@@ -246,14 +246,14 @@ export default function LessonsContainer({onLessonUpdate}) {
                     </div>
                 )}
             </div>
-            <div className={`flex flex-col items-center justify-start w-[20%] h-full gap-[2%] text-base`}>
+            <div className="order-1 flex w-full flex-col items-stretch justify-start gap-3 text-base md:flex-row md:flex-wrap md:items-center xl:order-2 xl:h-full xl:w-[30%] xl:flex-col xl:items-center xl:gap-[2%]">
                 <DashboardFilter
                     period="mēnesis"
                     onClick={() => handleFilterChange('month')}
                     width="90%"
                     active={filter === 'month'}
                 />
-                <div className={`flex flex-row items-center justify-center w-full gap-[2%]`}>
+                <div className="flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap xl:gap-[2%]">
                     <DashboardFilter
                         period="3 dienas"
                         onClick={() => handleFilterChange('inThreeDays')}
@@ -270,8 +270,8 @@ export default function LessonsContainer({onLessonUpdate}) {
                         period="šodien"
                         onClick={() => handleFilterChange('today')}
                         width="15%"
-                        active={filter === 'today'}
-                    />
+                    active={filter === 'today'}
+                />
                 </div>
                 <DashboardFilter
                     period="visas"

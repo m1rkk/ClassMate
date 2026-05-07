@@ -31,13 +31,13 @@ export default function Calendar({month,setMonth,year,setYear,setDay, day}){
     };
 
     return(
-        <div className={`flex flex-col items-center justify-center w-full h-[60%] gap-4 bg-transparent border-white border-2 rounded-2xl text-white`}>
-            <div className={`flex flex-row items-center justify-center w-full gap-3 mt-2`}>
+        <div className="flex min-h-[18rem] w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-white bg-transparent px-2 pb-3 text-white">
+            <div className="mt-2 flex w-full flex-row items-center justify-center gap-3">
                 <button onClick={goPrevMonth}>{"<"}</button>
                 <p>{monthNames[month]} {year}</p>
                 <button onClick={goNextMonth}>{">"}</button>
             </div>
-            <div className={`grid grid-cols-7 w-full h-full gap-1 place-items-center`}>
+            <div className="grid h-full w-full grid-cols-7 gap-1 place-items-center sm:gap-2">
                 {[...Array(getDaysInMonth(year, month))].map((_, idx) => (
                     <DayComponent
                         key={idx}

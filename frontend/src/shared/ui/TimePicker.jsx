@@ -1,9 +1,8 @@
-import {useState} from "react";
 import TimePickerOption from "./TimePickerOption";
 export default function TimePicker({time, setTime}) {
 
     return(
-        <div className="flex flex-row flex-wrap items-center justify-center w-[70%] gap-4">
+        <div className="flex w-full flex-row flex-wrap items-center justify-center gap-3 md:w-[85%] xl:w-[70%]">
             <TimePickerOption timeValue={"18:00"} onClick={() => {
                     setTime("18:00")
                 }

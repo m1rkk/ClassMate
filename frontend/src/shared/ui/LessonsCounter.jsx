@@ -6,6 +6,7 @@ export default function LessonsCounter({timePeriod, refreshTrigger}) {
     const [lessonsCountToday, setLessonsCountToday] = useState(0);
     const [lessonsCountThisWeek, setLessonsCountThisWeek] = useState(0);
     const [error, setError] = useState("");
+    const isToday = timePeriod === "today";
 
     useEffect(() => {
         let isMounted = true;
@@ -62,30 +63,20 @@ export default function LessonsCounter({timePeriod, refreshTrigger}) {
         }
     }, [refreshTrigger]);
 
-    if(timePeriod === "today"){
-        return(
-            <div className="flex flex-row items-center justify-center w-1/5 gap-[50%] pb-5 pt-5 bg-white rounded-2xl">
-                <p className={`text-3xl w-1/4`}>Stundas šodien</p>
-                <div className={`text-6xl font-[Orbitron] min-w-18 flex justify-center`}>
-                    {isLoading && (
-                        <div className="h-12 w-16 rounded-md bg-[#2A2A2A] animate-pulse" />)}
-                    {!isLoading && error && <p className="text-red-300">{error}</p>}
-                    {!isLoading && lessonsCountToday}
-                </div>
+    const label = isToday ? "Stundas šodien" : "Stundas šonedēļ";
+    const count = isToday ? lessonsCountToday : lessonsCountThisWeek;
+    const labelWidthClass = isToday ? "xl:w-1/4" : "xl:w-1/3";
+    const desktopGapClass = isToday ? "xl:gap-[50%] xl:pb-5 xl:pt-5" : "xl:gap-[40%] xl:pb-6 xl:pt-6";
+
+    return(
+        <div className={`flex w-full flex-row items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4 sm:flex-row sm:items-center xl:w-1/5 xl:flex-row xl:items-center xl:justify-center ${desktopGapClass}`}>
+            <p className={`w-full text-2xl sm:max-w-[12rem] xl:text-3xl ${labelWidthClass}`}>{label}</p>
+            <div className="flex min-w-18 justify-center self-end text-5xl font-[Orbitron] sm:self-auto xl:text-6xl">
+                {isLoading && (
+                    <div className="h-12 w-16 rounded-md bg-[#2A2A2A] animate-pulse" />)}
+                {!isLoading && error && <p className="text-right text-base text-red-300 xl:text-lg">{error}</p>}
+                {!isLoading && !error && count}
             </div>
-        )
-    }
-    else {
-        return(
-            <div className="flex flex-row items-center justify-center w-1/5 gap-[40%] pb-6 pt-6 bg-white rounded-2xl">
-                <p className={`text-3xl  w-1/3`}>Stundas šonedēļ</p>
-                <div className={`text-6xl font-[Orbitron] min-w-18 flex justify-center`}>
-                    {isLoading && (
-                        <div className="h-12 w-16 rounded-md bg-[#2A2A2A] animate-pulse" />)}
-                    {!isLoading && error && <p className="text-red-300">{error}</p>}
-                    {!isLoading && lessonsCountThisWeek}
-                </div>
-            </div>
-        )
-    }
+        </div>
+    )
 }

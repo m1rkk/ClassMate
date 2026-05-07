@@ -1,12 +1,14 @@
-export default function DashboardFilter({period, onClick, width, active}) {
+export default function DashboardFilter({period, onClick, width, active, className = ""}) {
     return (
-        <div
+        <button
+            type="button"
             onClick={onClick}
-            className={`flex flex-row items-center justify-center w-[${width}] pt-3 pb-3 pr-5 pl-5 rounded-full cursor-pointer text-lg ${
+            style={width ? { "--dashboard-filter-width": width } : undefined}
+            className={`flex w-full cursor-pointer items-center justify-center rounded-full border-none px-5 py-3 text-base sm:w-auto sm:text-lg xl:w-[var(--dashboard-filter-width)] ${
                 active ? "bg-white/20" : "bg-white"
-            }`}
+            } ${className}`}
         >
             {period}
-        </div>
+        </button>
     )
 }
