@@ -77,25 +77,25 @@ export default function ProfileComponent() {
     };
 
     return (
-        <div className={`flex flex-row items-center justify-center w-1/3 gap-2`}>
-            <img src={profilePic} alt="" className="w-1/6"/>
-            <div className="flex flex-col items-center justify-center w-full">
-                <div className={`text-2xl text-white w-full`}>
+        <div className="flex w-full flex-col items-center justify-center gap-4 rounded-2xl bg-white/10 p-4 sm:flex-row sm:items-start sm:gap-5 sm:p-5 md:col-span-2 xl:w-1/3 xl:flex-row xl:items-center xl:gap-2 xl:bg-transparent xl:p-0">
+            <img src={profilePic} alt="" className="w-20 shrink-0 sm:w-24 xl:w-1/6"/>
+            <div className="flex w-full flex-col items-center justify-center text-center sm:items-start sm:text-left">
+                <div className="w-full break-words text-2xl text-white">
                     {isLoading && (<div className={`w-40 h-5 animate-pulse bg-white/20`}></div>)}
                     {!isLoading && name + " " + surname}
                 </div>
-                <div className={`text-base text-white w-full`}>
+                <div className="w-full text-base text-white">
                     {isLoading && (<div className={`w-20 h-5 animate-pulse bg-white/20 pt-2`}></div>)}
                     {!isLoading && city + ", " + roleLabel}
                 </div>
-                <div className={`flex flex-row items-center justify-start w-full mt-[5%] gap-6`}>
-                    <button onClick={handleLogout} className={`bg-white border-none rounded-lg p-1 w-[35%]`}>
+                <div className="mt-4 flex w-full flex-col items-stretch justify-start gap-3 sm:flex-row sm:items-center sm:gap-4 xl:mt-[5%] xl:gap-6">
+                    <button onClick={handleLogout} className="w-full rounded-lg border-none bg-white p-2 sm:w-[35%]">
                         Izrakstīties
                     </button>
                     <button
                         onClick={handleDeleteAccount}
                         disabled={isDeleting || isLoading}
-                        className={`bg-[#FF6262] border-none rounded-lg p-1 w-1/2 text-white disabled:opacity-60 disabled:cursor-not-allowed`}
+                        className="w-full rounded-lg border-none bg-[#FF6262] p-2 text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-1/2"
                     >
                         {isDeleting ? "Dzēš..." : "Dzēst kontu"}
                     </button>

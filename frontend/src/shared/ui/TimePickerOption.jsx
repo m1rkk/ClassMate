@@ -1,5 +1,11 @@
 export default function TimePickerOption({timeValue,onClick,selected = false}){
     return(
-        <div className={`flex-none min-w-[20%] pt-2 pb-2 rounded-2xl bg-white text-black text-center font-[Orbitron] ${selected ? "bg-white/20 " : "bg-white"}`} onClick={onClick}>{timeValue}</div>
+        <button
+            type="button"
+            className={`min-w-[calc(50%-0.375rem)] rounded-2xl border-none pt-2 pb-2 text-center font-[Orbitron] sm:min-w-[20%] ${selected ? "bg-white/20 text-white" : "bg-white text-black"}`}
+            onClick={onClick}
+        >
+            {timeValue}
+        </button>
     )
 }
