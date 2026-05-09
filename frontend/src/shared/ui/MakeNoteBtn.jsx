@@ -22,7 +22,7 @@ export default function MakeNoteBtn({addingExpand = false,setAddingExpand,text, 
     return(
         <div className={`flex flex-row items-center justify-end w-full gap-4`}>
             {addingExpand && (<button
-                className={`w-[20%] bg-white rounded-lg hover:bg-gray-200 pt-2 pb-2 text-lg flex items-center justify-center `}
+                className={`flex w-[20%] items-center justify-center rounded-lg bg-white pt-2 pb-2 text-lg hover:bg-gray-200 max-md:w-full max-md:text-base `}
                 onClick={makeNote}
                 disabled={isLoading || isCreated}
             >
@@ -35,7 +35,7 @@ export default function MakeNoteBtn({addingExpand = false,setAddingExpand,text, 
                 )}
             </button>)}
             {!addingExpand && (<button
-                    className={`w-[20%] bg-white rounded-lg hover:bg-gray-200 pt-2 pb-2 text-lg flex items-center justify-center`}
+                    className={`flex w-[20%] items-center justify-center rounded-lg bg-white pt-2 pb-2 text-lg hover:bg-gray-200 max-md:w-full max-md:text-base`}
                     onClick={()=>{
                         setAddingExpand(true);
                     }}

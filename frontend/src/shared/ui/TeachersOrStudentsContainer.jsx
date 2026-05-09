@@ -90,8 +90,8 @@ export default function TeachersOrStudentsContainer() {
     const visibleCards = selectedPersonId === null ? cards : cards.filter((person) => person.id === selectedPersonId);
 
     return (
-        <div className="w-full flex flex-col items-center justify-start gap-8 h-full">
-            <div className="flex flex-row items-center justify-start w-[85%] h-[6%]">
+        <div className="flex h-full w-full flex-col items-center justify-start gap-8 max-md:h-auto max-md:gap-4">
+            <div className="flex h-[6%] w-[85%] flex-row items-center justify-start max-md:h-12 max-md:w-full">
                 <GlassInput
                     placeholder={isStudent ? "Meklēt skolotājus..." : "Meklēt savus skolēnus..."}
                     onChange={(e) => {
@@ -99,21 +99,22 @@ export default function TeachersOrStudentsContainer() {
                     }}
                     width={"60%"}
                     height={"100%"}
+                    className="max-md:!h-12 max-md:!w-full"
                 />
             </div>
             {loading && (
-                <div className="w-[85%] h-full grid grid-cols-5 gap-[10%]">
+                <div className="grid h-full w-[85%] grid-cols-5 gap-[10%] max-md:h-auto max-md:w-full max-md:grid-cols-1 max-md:gap-4">
                     {[...Array(8)].map((_, idx) => (
-                        <div key={idx} className="w-full h-[90%] rounded-2xl bg-white/20 animate-pulse" />
+                        <div key={idx} className="h-[90%] w-full animate-pulse rounded-2xl bg-white/20 max-md:h-[18rem]" />
                     ))}
                 </div>
             )}
             {!loading && (
                 <div
-                    className={`w-[85%] h-full ${
+                    className={`h-full w-[85%] max-md:h-auto max-md:w-full ${
                         selectedPersonId === null
-                            ? "grid grid-cols-5 gap-[10%]"
-                            : "grid grid-cols-1 place-items-start"
+                            ? "grid grid-cols-5 gap-[10%] max-md:grid-cols-1 max-md:gap-4"
+                            : "grid grid-cols-1 place-items-start max-md:place-items-stretch"
                     }`}
                 >
                     {visibleCards.map((person) => (

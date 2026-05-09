@@ -36,6 +36,7 @@ export default function PersonCatalogObject({
     const [theme, setTheme] = useState("");
     const [addingExpand, setAddingExpand] = useState(false);
     const [noteText, setNoteText] = useState("");
+    const role = localStorage.getItem("role");
 
     const closeExpand = () => {
         onView?.(null);
@@ -51,13 +52,17 @@ export default function PersonCatalogObject({
             opacity={50}
             backgroundOpacity={0.01}
             mixBlendMode="difference"
-            className="transition-all duration-500 ease-out "
+            className={`transition-all duration-500 ease-out ${
+                isExpanded
+                    ? "max-md:!h-[calc(100dvh-2rem)] max-md:!w-full"
+                    : "max-md:!h-[18rem] max-md:!w-full"
+            }`}
             width={isExpanded ? "min(90%)" : "10vw"}
             height={isExpanded ? "85%" : "30vh"}
         > {!isExpanded && (
-            <div className={`w-full h-full flex flex-col items-center justify-center ${isExpanded ? "gap-8" : "gap-5"}`}>
-            <img src={profilePic} alt="" className={isExpanded ? "w-[20%] min-w-[130px]" : "w-[40%]"} />
-            <div className="flex flex-col items-center justify-center w-full">
+            <div className={`flex h-full w-full flex-col items-center justify-center ${isExpanded ? "gap-8" : "gap-5 max-md:gap-4"}`}>
+            <img src={profilePic} alt="" className={isExpanded ? "w-[20%] min-w-[130px]" : "w-[40%] max-md:w-24"} />
+            <div className="flex w-full flex-col items-center justify-center max-md:px-3 max-md:text-center">
                 <p className={`text-white ${isExpanded ? "text-2xl" : ""}`}>{name} {surname}</p>
                 <p className="text-white">{city}</p>
                 {rating === 0 && <p className="text-white"></p>}
@@ -78,12 +83,12 @@ export default function PersonCatalogObject({
             </button>
         </div>)
             }
-            {isExpanded && localStorage.getItem("role") === "student" && (
-                <div className={`w-full h-full flex flex-row items-center justify-content-around`}>
-                    <div className="w-full h-full flex flex-col items-center justify-center gap-5">
-                        <img src={profilePic} alt="" className="w-[20%] min-w-32.5" />
+            {isExpanded && role === "student" && (
+                <div className={`flex h-full w-full flex-row items-center justify-content-around max-md:flex-col max-md:items-stretch max-md:justify-start max-md:gap-4 max-md:overflow-y-auto max-md:px-2 max-md:py-3`}>
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-5 max-md:h-auto max-md:flex-none max-md:gap-3">
+                        <img src={profilePic} alt="" className="w-[20%] min-w-32.5 max-md:w-24 max-md:min-w-0" />
                         <div className="flex flex-col items-center justify-center w-full">
-                            <p className="text-white text-2xl">{name} {surname}</p>
+                            <p className="text-white text-2xl max-md:text-xl">{name} {surname}</p>
                             <p className="text-white">{city}</p>
                             <div className="flex flex-row items-center justify-center w-full">
                                 ({[...Array(rating)].map((_, idx) => (
@@ -92,7 +97,7 @@ export default function PersonCatalogObject({
                             </div>
                         </div>
                     </div>
-                    <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-4`}>
+                    <div className={`mt-8 flex h-full w-full flex-col items-center justify-start gap-4 max-md:mt-0 max-md:h-auto max-md:flex-none max-md:pb-4`}>
                         <CloseBtn OnClick={() => closeExpand()}/>
                         <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
                         <p className="text-white text-sm mt-2">Izvēlētais datums: {selectedDate.toLocaleDateString("lv-LV")}</p>
@@ -102,27 +107,27 @@ export default function PersonCatalogObject({
                     </div>
                 </div>
             )}
-            {isExpanded && localStorage.getItem("role") === "teacher" && (
-                <div className={`w-full h-full flex flex-col items-center justify-content-around pt-2 pr-2`}>
+            {isExpanded && role === "teacher" && (
+                <div className={`flex h-full w-full flex-col items-center justify-content-around pt-2 pr-2 max-md:overflow-y-auto max-md:px-2 max-md:pb-4`}>
                     <CloseBtn OnClick={() => closeExpand()}/>
-                    <div className="w-full flex flex-row items-center justify-end gap-2">
-                        <div className="flex flex-col items-end justify-center text-right w-[10%]">
-                            <p className="text-white text-2xl">{name} {surname}</p>
+                    <div className="flex w-full flex-row items-center justify-end gap-2 max-md:flex-col-reverse max-md:items-center max-md:justify-center max-md:text-center">
+                        <div className="flex w-[10%] flex-col items-end justify-center text-right max-md:w-full max-md:items-center max-md:text-center">
+                            <p className="text-white text-2xl max-md:text-xl">{name} {surname}</p>
                             <p className="text-white">{city}</p>
                         </div>
-                        <img src={profilePic} alt="" className="w-[6%]" />
+                        <img src={profilePic} alt="" className="w-[6%] max-md:w-20" />
                     </div>
                     {!addingExpand && (
-                        <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-10`}>
+                        <div className={`mt-8 flex h-full w-full flex-col items-center justify-start gap-10 max-md:mt-4 max-md:gap-4`}>
                             <StudentNotes studentId={personId}/>
                             <MakeNoteBtn addingExpand={addingExpand} setAddingExpand={setAddingExpand} text={""} date={""} teacherId={localStorage.getItem("teacherId")} studentId={personId} />
                         </div>
                     )}
                     {addingExpand && (
-                        <div className={`w-full h-full flex flex-col items-center justify-start mt-8 gap-4`}>
+                        <div className={`mt-8 flex h-full w-full flex-col items-center justify-start gap-4 max-md:mt-4`}>
                             <CloseBtn OnClick={() => setAddingExpand(false)}/>
                             <Calendar month={month} year={year} day={day} setMonth={setMonth} setYear={setYear} setDay={setDay}/>
-                            <input type={"text"} value={noteText} className={`bg-transparent border-2 border-white rounded-lg text-white w-full h-15 p-1`} onChange={(e) => setNoteText(e.target.value)}/>
+                            <input type={"text"} value={noteText} className={`h-15 w-full rounded-lg border-2 border-white bg-transparent p-1 text-white max-md:h-12`} onChange={(e) => setNoteText(e.target.value)}/>
                             <MakeNoteBtn addingExpand={addingExpand} setAddingExpand={setAddingExpand} text={noteText} date={selectedDate} teacherId={localStorage.getItem("teacherId")} studentId={personId} />
                         </div>
 
