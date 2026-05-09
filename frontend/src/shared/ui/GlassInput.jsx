@@ -1,5 +1,4 @@
 import GlassSurface from "@/components/ui/GlassSurface";
-import {useState} from "react";
 
 export default function GlassInput(
     {placeholder,
@@ -7,7 +6,10 @@ export default function GlassInput(
         height = "6%",
     onChange,
     value,
-    className}) {
+    className,
+    type = "text",
+    inputClassName = "",
+    ...inputProps}) {
     return(
     <GlassSurface
         displace={1} //blur
@@ -22,7 +24,14 @@ export default function GlassInput(
         width={width}
         height={height}
         className={className}>
-        <input value={value} onChange={onChange} type='text' placeholder={placeholder} className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-lg`}/>
+        <input
+            value={value}
+            onChange={onChange}
+            type={type}
+            placeholder={placeholder}
+            className={`bg-transparent w-full h-full placeholder-white focus:outline-none text-white placeholder:text-lg ${inputClassName}`}
+            {...inputProps}
+        />
     </GlassSurface>
     )
 }
