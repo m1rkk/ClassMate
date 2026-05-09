@@ -46,6 +46,16 @@ body{
   height: 100%;
 }
 
+.dashboard-lessons-surface {
+  --dashboard-lessons-height: clamp(24rem, 50vh, 30rem);
+}
+
+@media (max-width: 767px) {
+  .dashboard-lessons-surface {
+    --dashboard-lessons-height: clamp(34rem, 78vh, 44rem);
+  }
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
