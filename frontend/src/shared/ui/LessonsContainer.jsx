@@ -8,7 +8,15 @@ import ThemePicker from "@/shared/ui/ThemePicker";
 import BookBtn from "@/shared/ui/BookBtn";
 import * as React from "react";
 import CloseBtn from "@/shared/ui/CloseBtn";
+import { ChevronDown } from "lucide-react";
 
+const FILTER_OPTIONS = [
+    { value: "month", label: "mēnesis" },
+    { value: "inThreeDays", label: "3 dienas" },
+    { value: "week", label: "nedēļa" },
+    { value: "today", label: "šodien" },
+    { value: "all", label: "visas" },
+];
 
 export default function LessonsContainer({onLessonUpdate}) {
     const [lessons, setLessons] = useState([]);
@@ -246,39 +254,59 @@ export default function LessonsContainer({onLessonUpdate}) {
                     </div>
                 )}
             </div>
-            <div className="order-1 flex w-full flex-col items-stretch justify-start gap-3 text-base md:flex-row md:flex-wrap md:items-center xl:order-2 xl:h-full xl:w-[30%] xl:flex-col xl:items-center xl:gap-[2%]">
-                <DashboardFilter
-                    period="mēnesis"
-                    onClick={() => handleFilterChange('month')}
-                    width="90%"
-                    active={filter === 'month'}
-                />
-                <div className="flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap xl:gap-[2%]">
-                    <DashboardFilter
-                        period="3 dienas"
-                        onClick={() => handleFilterChange('inThreeDays')}
-                        width="25%"
-                        active={filter === 'inThreeDays'}
+            <div className="order-1 flex w-full flex-col items-stretch justify-start gap-3 text-base xl:order-2 xl:h-full xl:w-[30%]">
+                <div className="relative w-full md:hidden">
+                    <select
+                        aria-label="Filtrēt stundas"
+                        value={filter}
+                        onChange={(event) => handleFilterChange(event.target.value)}
+                        className="w-full appearance-none rounded-full border-none bg-white px-5 py-3 pr-11 text-base text-black outline-none"
+                    >
+                        {FILTER_OPTIONS.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                    <ChevronDown
+                        aria-hidden="true"
+                        className="pointer-events-none absolute right-4 top-1/2 size-5 -translate-y-1/2 text-black"
                     />
-                    <DashboardFilter
-                        period="nedēļa"
-                        onClick={() => handleFilterChange('week')}
-                        width="35%"
-                        active={filter === 'week'}
-                    />
-                    <DashboardFilter
-                        period="šodien"
-                        onClick={() => handleFilterChange('today')}
-                        width="15%"
-                    active={filter === 'today'}
-                />
                 </div>
-                <DashboardFilter
-                    period="visas"
-                    onClick={() => handleFilterChange('all')}
-                    width="20%"
-                    active={filter === 'all'}
-                />
+                <div className="hidden w-full flex-col items-stretch justify-start gap-3 md:flex md:flex-row md:flex-wrap md:items-center xl:h-full xl:flex-col xl:items-center xl:gap-[2%]">
+                    <DashboardFilter
+                        period="mēnesis"
+                        onClick={() => handleFilterChange('month')}
+                        width="90%"
+                        active={filter === 'month'}
+                    />
+                    <div className="flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap xl:gap-[2%]">
+                        <DashboardFilter
+                            period="3 dienas"
+                            onClick={() => handleFilterChange('inThreeDays')}
+                            width="25%"
+                            active={filter === 'inThreeDays'}
+                        />
+                        <DashboardFilter
+                            period="nedēļa"
+                            onClick={() => handleFilterChange('week')}
+                            width="35%"
+                            active={filter === 'week'}
+                        />
+                        <DashboardFilter
+                            period="šodien"
+                            onClick={() => handleFilterChange('today')}
+                            width="15%"
+                            active={filter === 'today'}
+                        />
+                    </div>
+                    <DashboardFilter
+                        period="visas"
+                        onClick={() => handleFilterChange('all')}
+                        width="20%"
+                        active={filter === 'all'}
+                    />
+                </div>
             </div>
         </div>
     )

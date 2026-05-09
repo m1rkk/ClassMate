@@ -92,7 +92,8 @@ export default function Dashboard() {
                         backgroundOpacity={0.01}
                         mixBlendMode="difference"
                         width={`100%`}
-                        height={`clamp(24rem, 50vh, 30rem)`}
+                        height={`var(--dashboard-lessons-height)`}
+                        className="dashboard-lessons-surface"
                     >
                         <LessonsContainer onLessonUpdate={() => setCounterRefresh(prev => prev + 1)}/>
                     </GlassSurface>
