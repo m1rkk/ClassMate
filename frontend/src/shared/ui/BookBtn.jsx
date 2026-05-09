@@ -20,7 +20,7 @@ export default function BookBtn({price, date, time, theme, teacherId, studentId}
 
     return (
         <button
-            className={`w-[50%] bg-white rounded-lg hover:bg-gray-200 pt-2 pb-2 text-lg flex items-center justify-center`}
+            className={`flex w-[50%] items-center justify-center rounded-lg bg-white pt-2 pb-2 text-lg hover:bg-gray-200 max-md:w-full max-md:text-base`}
             onClick={bookLessonHandler}
             disabled={isLoading || isBooked}
         >
