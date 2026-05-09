@@ -10,9 +10,25 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [loginError, setLoginError] = useState("");
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        if (loginError) {
+            setLoginError("");
+        }
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        if (loginError) {
+            setLoginError("");
+        }
+    };
 
     const handleLogin = async () => {
         if (isLoading) return;
+        setLoginError("");
         setIsLoading(true);
         try {
             await login(email, password);
@@ -50,6 +66,12 @@ export default function LoginPage() {
             navigate("/dashboard");
         } catch (error) {
             console.error(error);
+            const status = error?.response?.status;
+            if (status === 401 || status === 422 || status === 400) {
+                setLoginError("Nepareizs e-pasts vai parole.");
+            } else {
+                setLoginError("Neizdevās pieslēgties. Mēģini vēlreiz.");
+            }
         } finally {
             setIsLoading(false);
         }
@@ -57,6 +79,12 @@ export default function LoginPage() {
 
     return (
         <div className={`relative w-full min-h-screen bg-black flex flex-col md:h-screen md:flex-row md:justify-between md:items-center`}>
+            {loginError && (
+                <div className="fixed left-1/2 top-6 z-[60] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-xl bg-red-600 px-4 py-3 text-center text-sm font-medium text-white shadow-lg" role="alert" aria-live="assertive">
+                    {loginError}
+                </div>
+            )}
+
             <div className={`relative w-full min-h-screen md:w-2/3 md:h-full`}>
                 <Dither
                     waveColor={[0.5,0.5,0.5]}
@@ -70,8 +98,8 @@ export default function LoginPage() {
                 </Dither>
 
                 <div className={`absolute top-0 w-full h-full flex justify-center items-center gap-[3%] flex-col px-4`}>
-                    <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email} width="90%" className="md:!w-[45%]"/>
-                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password} width="90%" className="md:!w-[45%]"/>
+                    <GlassInput placeholder={"e-pasts:"} onChange={handleEmailChange} value={email} width="90%" className="md:!w-[45%]"/>
+                    <GlassInput placeholder={"parole:"} type={"password"} onChange={handlePasswordChange} value={password} width="90%" className="md:!w-[45%]"/>
 
                     <div className={`flex items-center justify-start gap-4 w-[90%] md:w-[45%]`}>
                         <div className={`text-white`}>Nav konta? <Link to={`/register`} className={`text-blue-700 font-black`}>Spied šeit</Link></div>

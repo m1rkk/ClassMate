@@ -6,6 +6,9 @@ import {register} from "@/shared/Api";
 import {useState} from "react";
 import latviaCities from "@/pages/RegisterPage/Cities";
 
+const PASSWORD_PATTERN = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/;
+const PASSWORD_ERROR_TEXT = "Parolei jābūt vismaz 6 simbolus garai, ar vienu lielo burtu, vienu ciparu un vienu speciālo simbolu.";
+
 export default function RegisterPage() {
 
     const [name, setName] = useState("");
@@ -14,6 +17,28 @@ export default function RegisterPage() {
     const [role, setRole] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+
+    const validatePassword = (value) => PASSWORD_PATTERN.test(value) ? "" : PASSWORD_ERROR_TEXT;
+
+    const handlePasswordChange = (e) => {
+        const nextPassword = e.target.value;
+
+        setPassword(nextPassword);
+        setPasswordError(nextPassword ? validatePassword(nextPassword) : "");
+    };
+
+    const handleRegister = async () => {
+        const currentPasswordError = validatePassword(password);
+
+        if (currentPasswordError) {
+            setPasswordError(currentPasswordError);
+            return;
+        }
+
+        setPasswordError("");
+        await register(name, surname, email, city, password, role);
+    };
 
     return(
         <div className={`relative w-full min-h-screen bg-black flex flex-col md:h-screen md:flex-row md:justify-between md:items-center`}>
@@ -36,7 +61,22 @@ export default function RegisterPage() {
                     </div>
 
                     <GlassInput placeholder={"e-pasts:"} onChange={(e) => setEmail(e.target.value)} value={email} width="90%" className="md:!w-[45%]"/>
-                    <GlassInput placeholder={"parole:"} onChange={(e) => setPassword(e.target.value)} value={password} width="90%" className="md:!w-[45%]"/>
+                    <GlassInput
+                        placeholder={"parole:"}
+                        onChange={handlePasswordChange}
+                        value={password}
+                        width="90%"
+                        className="md:!w-[45%]"
+                        type="password"
+                        minLength={6}
+                        pattern={PASSWORD_PATTERN.source}
+                        title={PASSWORD_ERROR_TEXT}
+                        autoComplete="new-password"
+                        aria-invalid={Boolean(passwordError)}
+                    />
+                    {passwordError && (
+                        <p className="w-[90%] text-sm text-red-300 md:w-[45%]">{passwordError}</p>
+                    )}
 
                     <GlassSurface
                         saturation={1}
@@ -85,7 +125,7 @@ export default function RegisterPage() {
                         width={`90%`}
                         height={`6%`}
                         className="md:!w-[45%]">
-                        <button className={`bg-transparent w-full h-full text-white`} onClick={()=>register(name,surname,email,city,password,role)}>Reģistrēties</button>
+                        <button className={`bg-transparent w-full h-full text-white`} onClick={handleRegister}>Reģistrēties</button>
                     </GlassSurface>
 
                 </div>
